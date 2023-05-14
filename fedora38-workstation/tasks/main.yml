@@ -18,7 +18,7 @@
 
     - name: install RPM Fusion free and nonfree repos
       ansible.builtin.dnf:
-        name: "{{ item.url }}"
+        name: "{{ item.location }}"
         state: present
       with_items:
         - "{{ repos }}"
@@ -32,6 +32,11 @@
       ansible.builtin.copy:
         src: ./etc/yum.repos.d/powershell.repo
         dest: /etc/yum.repos.d/powershell.repo
+
+    - name: copy Microsoft Visual Studio Code repo file
+      ansible.builtin.copy:
+        src: ./etc/yum.repos.d/vscode.repo
+        dest: /etc/yum.repos.d/vscode.repo
 
     - name: enable the google chrome repo
       community.general.ini_file:
