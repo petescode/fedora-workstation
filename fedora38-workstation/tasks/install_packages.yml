@@ -42,5 +42,5 @@
 # as of 2023-05-14 dnf module does not support optionals
 - name: install virtualization package group
   ansible.builtin.command:
-    cmd: dnf group install --with-optional virtualization
+    cmd: dnf group install --with-optional virtualization -y
 ...
