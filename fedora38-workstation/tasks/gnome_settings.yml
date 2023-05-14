@@ -5,8 +5,21 @@
     cmd: pkill --full nautilus
 
 # copy gnome settings file to dest task
+- name: copy gnome settings file
+  ansible.builtin.copy:
+    src: ./etc/dconf/db/local.d/01-gnome-settings
+    dest: /etc/dconf/db/local.d/01-gnome-settings
 
 # copy mimeapps file task
+
+- name: debug ansible user name
+  ansible.builtin.debug:
+    msg: "{{ ansible_user_id }}"
+
+# - name: copy mimeapps default application settings file
+#   ansible.builtin.copy:
+#     src: ./home/username/.config/mimeapps.list
+#     dest: /home/username/.config/mimeapps.list
 
 # set permissions on mimeapps file task
 
