@@ -1,0 +1,18 @@
+---
+# kill Nautilus task
+- name: Stop Nautilus service
+  ansible.builtin.service:
+    name: Nautilus
+    state: stopped
+    
+
+# copy gnome settings file to dest task
+
+# copy mimeapps file task
+
+# set permissions on mimeapps file task
+
+# perform dconf update task
+
+# perform lineinfile mod for logind.conf task
+...
