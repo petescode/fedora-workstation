@@ -23,10 +23,15 @@
       with_items:
         - "{{ repos }}"
 
-    - name: install base packages
-      ansible.builtin.dnf:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - "{{ base_packages }}"
+    - name: install Microsoft Teams repo
+      ansible.builtin.copy:
+        src: /etc/yum.repos.d/teams.repo
+        dest: /etc/yum.repos.d/teams.repo
+
+    # - name: install base packages
+    #   ansible.builtin.dnf:
+    #     name: "{{ item }}"
+    #     state: present
+    #   with_items:
+    #     - "{{ base_packages }}"
 ...
