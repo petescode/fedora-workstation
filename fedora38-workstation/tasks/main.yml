@@ -1,4 +1,7 @@
 ---
-- name: Include repo setup tasks
+- name: Execute repo setup tasks
   include_tasks: setup_repos.yml
+
+- name: Execute package installation tasks 
+  include_tasks: install_packages.yml
 ...
