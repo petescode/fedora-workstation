@@ -6,23 +6,24 @@
   with_items:
     - "{{ unwanted_packages }}"
 
-- name: upgrade all current packages
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
-    update_cache: True
-
 - name: update multimedia packages
   ansible.builtin.dnf:
     name: '@multimedia'
     state: latest
     install_weak_deps: False
+    update_cache: True
 
 - name: update sound-and-video packages
   ansible.builtin.dnf:
     name: '@sound-and-video'
     state: latest
     install_weak_deps: True
+
+# - name: upgrade all current packages
+#   ansible.builtin.dnf:
+#     name: "*"
+#     state: latest
+#     update_cache: True
 
 # - name: install base packages
 #   ansible.builtin.dnf:
