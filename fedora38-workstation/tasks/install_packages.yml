@@ -10,8 +10,9 @@
   ansible.builtin.dnf:
     name: '@multimedia'
     state: latest
-    install_weak_deps: False
     update_cache: True
+    install_weak_deps: False
+    allow_erasing: True
 
 - name: update sound-and-video packages
   ansible.builtin.dnf:
