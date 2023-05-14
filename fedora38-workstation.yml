@@ -1,0 +1,11 @@
+---
+- name: Configure Fedora 38 Workstation
+  hosts: localhost
+  connection: local
+  become: True
+  gather_facts: True
+  tasks:
+    - name: Configure using role
+      import_role:
+        name: fedora38-workstation
+...

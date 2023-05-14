@@ -6,9 +6,11 @@ gpg_keys:
     path: "/usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}"
   - name: RPM Fusion nonfree repo gpg key
     path: "/usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}"
+
 repos:
   - name: RPM Fusion free repository
     url: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
   - name: RPM Fusion nonfree repository
     url: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
-  
+
+...

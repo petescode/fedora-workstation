@@ -1,2 +1,37 @@
 ---
 # vars file for fedora38-workstation
+base_packages:
+  - "ansible"
+  - "darktable"
+  - "dconf-editor"
+  - "dnf-utils"
+  - "gnome-screenshot"
+  - "gnome-tweaks"
+  - "golang"
+  - "keepassxc"
+  - "lynx"
+  - "nmap"
+  - "nss-tools"
+  - "openssl"
+  - "papirus-icon-theme"
+  - "perl-Image-ExifTool"
+  - "pinta"
+  - "p7zip"
+  - "smartmontools"
+  - "sqlite"
+  - "terminator"
+  - "vim"
+  - "wireshark"
+  - "wodim"
+  - "yt-dlp"
+
+fusion_packages:
+  - "fuse-exfat"
+  - "libdvdcss"
+  - "python-vlc"
+  - "vlc"
+
+proprietary_packages:
+  - "code"
+  - "google-chrome-stable"
+...
