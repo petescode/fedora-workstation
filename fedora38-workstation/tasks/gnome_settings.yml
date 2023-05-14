@@ -1,10 +1,8 @@
 ---
 # kill Nautilus task
-- name: Stop Nautilus service
-  ansible.builtin.service:
-    name: Nautilus
-    state: stopped
-    
+- name: kill nautilus process
+  ansible.builtin.command:
+    cmd: pkill --full nautilus
 
 # copy gnome settings file to dest task
 
