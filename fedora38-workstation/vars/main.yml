@@ -1,5 +1,12 @@
 ---
-# vars file for fedora38-workstation
+unwanted_packages:
+  - "cheese"
+  - "gnome-boxes"
+  - "gnome-contacts"
+  - "gnome-maps"
+  - "rhythmbox"
+  - "simple-scan"
+
 base_packages:
   - "ansible"
   - "darktable"

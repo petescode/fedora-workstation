@@ -1,8 +1,32 @@
 ---
-- name: install base packages
+- name: remove unwanted packages
   ansible.builtin.dnf:
     name: "{{ item }}"
-    state: present
+    state: absent
   with_items:
-    - "{{ base_packages }}"
+    - "{{ unwanted_packages }}"
+
+- name: upgrade all current packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: update multimedia packages
+  ansible.builtin.dnf:
+    name: '@multimedia'
+    state: latest
+    install_weak_deps: False
+
+- name: update sound-and-video packages
+  ansible.builtin.dnf:
+    name: '@sound-and-video'
+    state: latest
+    install_weak_deps: True
+
+# - name: install base packages
+#   ansible.builtin.dnf:
+#     name: "{{ item }}"
+#     state: present
+#   with_items:
+#     - "{{ base_packages }}"
 ...

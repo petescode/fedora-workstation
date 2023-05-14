@@ -1,47 +1,47 @@
 ---
-    # - name: debug ansible distro version
-    #   ansible.builtin.debug:
-    #     msg: "{{ ansible_distribution_version }}"
+# - name: debug ansible distro version
+#   ansible.builtin.debug:
+#     msg: "{{ ansible_distribution_version }}"
 
-    # - name: install distribution RPM GPG keys
-    #   ansible.builtin.dnf:
-    #     name: distribution-gpg-keys
-    #     state: present
+# - name: install distribution RPM GPG keys
+#   ansible.builtin.dnf:
+#     name: distribution-gpg-keys
+#     state: present
 
-    - name: import repo gpg and signing keys
-      ansible.builtin.rpm_key:
-        key: "{{ item.location }}"
-        state: present
-      with_items:
-        - "{{ repo_keys }}"
+- name: import repo gpg and signing keys
+  ansible.builtin.rpm_key:
+    key: "{{ item.location }}"
+    state: present
+  with_items:
+    - "{{ repo_keys }}"
 
-    - name: install RPM Fusion free and nonfree repos
-      ansible.builtin.dnf:
-        name: "{{ item.location }}"
-        state: present
-      with_items:
-        - "{{ repos }}"
+- name: install RPM Fusion free and nonfree repos
+  ansible.builtin.dnf:
+    name: "{{ item.location }}"
+    state: present
+  with_items:
+    - "{{ repos }}"
 
-    - name: copy Microsoft Teams repo file
-      ansible.builtin.copy:
-        src: ./etc/yum.repos.d/teams.repo
-        dest: /etc/yum.repos.d/teams.repo
+- name: copy Microsoft Teams repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/teams.repo
+    dest: /etc/yum.repos.d/teams.repo
 
-    - name: copy Microsoft Powershell repo file
-      ansible.builtin.copy:
-        src: ./etc/yum.repos.d/powershell.repo
-        dest: /etc/yum.repos.d/powershell.repo
+- name: copy Microsoft Powershell repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/powershell.repo
+    dest: /etc/yum.repos.d/powershell.repo
 
-    - name: copy Microsoft Visual Studio Code repo file
-      ansible.builtin.copy:
-        src: ./etc/yum.repos.d/vscode.repo
-        dest: /etc/yum.repos.d/vscode.repo
+- name: copy Microsoft Visual Studio Code repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/vscode.repo
+    dest: /etc/yum.repos.d/vscode.repo
 
-    - name: enable the google chrome repo
-      community.general.ini_file:
-        path: /etc/yum.repos.d/google-chrome.repo
-        section: google-chrome
-        option: enabled
-        value: 1
-        backup: True
+- name: enable the google chrome repo
+  community.general.ini_file:
+    path: /etc/yum.repos.d/google-chrome.repo
+    section: google-chrome
+    option: enabled
+    value: 1
+    backup: True
 ...
