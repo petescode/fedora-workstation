@@ -9,12 +9,12 @@
     #     name: distribution-gpg-keys
     #     state: present
 
-    - name: enable GPG keys
+    - name: import repo gpg and signing keys
       ansible.builtin.rpm_key:
-        key: "{{ item.path }}"
+        key: "{{ item.location }}"
         state: present
       with_items:
-        - "{{ gpg_keys }}"
+        - "{{ repo_keys }}"
 
     - name: install RPM Fusion free and nonfree repos
       ansible.builtin.dnf:
