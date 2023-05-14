@@ -1,9 +1,10 @@
 ---
 # kill Nautilus task
+# need to figure out how to handle error here when Nautilus is not running and the command returns rc:1
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus
-    ignore_errors: True
+    #ignore_errors: True # this throws errors about no longer being supported due to legacy
 
 # copy gnome settings file to dest task
 - name: copy gnome settings file
@@ -17,7 +18,6 @@
   ansible.builtin.debug:
     msg: "{{ ansible_facts.ansible_env.USERNAME }}"
     #var: ansible_facts
-    
 
 # - name: copy mimeapps default application settings file
 #   ansible.builtin.copy:
