@@ -12,7 +12,7 @@
     state: latest
     update_cache: True
     install_weak_deps: False
-    allow_erasing: True
+    allowerasing: True
 
 - name: update sound-and-video packages
   ansible.builtin.dnf:
