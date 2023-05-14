@@ -10,6 +10,7 @@
   ansible.builtin.dnf:
     name: "*"
     state: latest
+    update_cache: True
 
 - name: update multimedia packages
   ansible.builtin.dnf:
