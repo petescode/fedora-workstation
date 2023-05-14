@@ -1,0 +1,34 @@
+---
+# tasks file for fedora38-workstation
+- name: Configure Fedora 38 Workstation post-install
+  hosts: localhost
+  connection: local
+  become: True
+  gather_facts: True
+  tasks:
+
+    # - name: debug ansible distro version
+    #   ansible.builtin.debug:
+    #     msg: "{{ ansible_distribution_version }}"
+
+    # - name: install distribution RPM GPG keys
+    #   ansible.builtin.dnf:
+    #     name: distribution-gpg-keys
+    #     state: present
+
+    - name: enable GPG keys
+      ansible.builtin.rpm_key:
+        key: "{{ item }}"
+        state: present
+      with_items:
+        - "{{ gpg_keys.path }}"
+    #     - "/usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-{{ ansible_distribution_version }}"
+
+    # - name: install RPM Fusion free and nonfree repos
+    #   ansible.builtin.dnf:
+    #     name: "{{ item }}"
+    #     state: present
+    #   with_items:
+    #     - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+    #     - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+...
