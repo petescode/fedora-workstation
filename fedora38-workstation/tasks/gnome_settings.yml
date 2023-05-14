@@ -3,6 +3,7 @@
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus
+    ignore_errors: True
 
 # copy gnome settings file to dest task
 - name: copy gnome settings file
@@ -14,7 +15,9 @@
 
 - name: debug ansible user name
   ansible.builtin.debug:
-    msg: "{{ ansible_user_id }}"
+    msg: "{{ ansible_facts.ansible_env.USERNAME }}"
+    #var: ansible_facts
+    
 
 # - name: copy mimeapps default application settings file
 #   ansible.builtin.copy:
