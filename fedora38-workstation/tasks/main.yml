@@ -23,10 +23,27 @@
       with_items:
         - "{{ repos }}"
 
-    - name: install Microsoft Teams repo
+    - name: copy Microsoft Teams repo file
       ansible.builtin.copy:
-        src: /etc/yum.repos.d/teams.repo
+        src: ./etc/yum.repos.d/teams.repo
         dest: /etc/yum.repos.d/teams.repo
+
+    - name: copy Microsoft Powershell repo file
+      ansible.builtin.copy:
+        src: ./etc/yum.repos.d/powershell.repo
+        dest: /etc/yum.repos.d/powershell.repo
+
+    - name: enable the google chrome repo
+      community.general.ini_file:
+        path: /etc/yum.repos.d/google-chrome.repo
+        section: google-chrome
+        option: enabled
+        value: 1
+        backup: True
+
+
+
+
 
     # - name: install base packages
     #   ansible.builtin.dnf:
