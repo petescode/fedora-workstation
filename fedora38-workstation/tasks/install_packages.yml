@@ -1,21 +1,10 @@
 ---
 - name: remove unwanted packages
   ansible.builtin.dnf:
-    name:
-      - "cheese"
-      - "gnome-boxes"
-      - "gnome-contacts"
-      - "gnome-maps"
-      - "rhythmbox"
-      - "simple-scan"
+    name: "{{ item }}"
     state: absent
-
-# - name: remove unwanted packages
-#   ansible.builtin.dnf:
-#     name: "{{ item }}"
-#     state: absent
-#   with_items:
-#     - "{{ unwanted_packages }}"
+  with_items:
+    - "{{ unwanted_packages }}"
 
 - name: update multimedia packages
   ansible.builtin.dnf:
@@ -31,11 +20,10 @@
     state: latest
     install_weak_deps: True
 
-# - name: upgrade all current packages
-#   ansible.builtin.dnf:
-#     name: "*"
-#     state: latest
-#     update_cache: True
+- name: upgrade all current packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
 
 # - name: install base packages
 #   ansible.builtin.dnf:
@@ -43,4 +31,11 @@
 #     state: present
 #   with_items:
 #     - "{{ base_packages }}"
+
+- name: install RPM Fusion packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ fusion_packages }}"
 ...

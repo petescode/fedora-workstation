@@ -37,6 +37,7 @@ fusion_packages:
   - "libdvdcss"
   - "python-vlc"
   - "vlc"
+  - "*-firmware"
 
 proprietary_packages:
   - "code"
