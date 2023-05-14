@@ -13,18 +13,17 @@
     dest: /etc/dconf/db/local.d/01-gnome-settings
 
 # copy mimeapps file task
-
-- name: debug ansible user name
-  ansible.builtin.debug:
-    msg: "{{ ansible_facts.ansible_env.USERNAME }}"
-    #var: ansible_facts
-
-# - name: copy mimeapps default application settings file
-#   ansible.builtin.copy:
-#     src: ./home/username/.config/mimeapps.list
-#     dest: /home/username/.config/mimeapps.list
+- name: copy mimeapps default application settings file
+  ansible.builtin.copy:
+    src: ./home/username/.config/mimeapps.list
+    dest: /home/{{ user_account }}/.config/mimeapps.list
 
 # set permissions on mimeapps file task
+- name: copy mimeapps default application settings file
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/.config/mimeapps.list
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
 
 # perform dconf update task
 

@@ -42,4 +42,6 @@ fusion_packages:
 proprietary_packages:
   - "code"
   - "google-chrome-stable"
+
+user_account: "{{ ansible_env.USERNAME }}"
 ...
