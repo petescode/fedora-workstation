@@ -20,10 +20,10 @@
     state: latest
     install_weak_deps: True
 
-- name: upgrade all current packages
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
+# - name: upgrade all current packages
+#   ansible.builtin.dnf:
+#     name: "*"
+#     state: latest
 
 # - name: install base packages
 #   ansible.builtin.dnf:
@@ -38,4 +38,9 @@
     state: present
   with_items:
     - "{{ fusion_packages }}"
+
+# as of 2023-05-14 dnf module does not support optionals
+- name: install virtualization package group
+  ansible.builtin.command:
+    cmd: dnf group install --with-optional virtualization
 ...
