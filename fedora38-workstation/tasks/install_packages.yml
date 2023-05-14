@@ -1,10 +1,21 @@
 ---
 - name: remove unwanted packages
   ansible.builtin.dnf:
-    name: "{{ item }}"
+    name:
+      - "cheese"
+      - "gnome-boxes"
+      - "gnome-contacts"
+      - "gnome-maps"
+      - "rhythmbox"
+      - "simple-scan"
     state: absent
-  with_items:
-    - "{{ unwanted_packages }}"
+
+# - name: remove unwanted packages
+#   ansible.builtin.dnf:
+#     name: "{{ item }}"
+#     state: absent
+#   with_items:
+#     - "{{ unwanted_packages }}"
 
 - name: update multimedia packages
   ansible.builtin.dnf:
