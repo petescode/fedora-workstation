@@ -9,5 +9,5 @@
   include_tasks: gnome_settings.yml
 
 - name: EXECUTE BROWSER SETUP TASKS
-  include_tasks: browser_settings.yml
+  include_tasks: browser_setup.yml
 ...
