@@ -1,0 +1,37 @@
+---
+# terminator settings
+- name: create terminator directory structure
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/.config/terminator/config/
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+- name: copy terminator settings file
+  ansible.builtin.copy:
+    src: ./home/username/.config/terminator/config
+    dest: /home/{{ user_account }}/.config/terminator/config
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+# powershell and dotnet settings
+- name: copy environment variables file
+  ansible.builtin.copy:
+    src: ./etc/profile.d/custom_env_vars.sh
+    dest: /etc/profile.d/custom_env_vars.sh
+
+# visual studio code settings
+- name: create vscode directory structure
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/.config/Code/User/
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+- name: copy vscode settings file
+  ansible.builtin.copy:
+    src: ./home/username/.config/Code/User/settings.json
+    dest: /home/{{ user_account }}/.config/Code/User/settings.json
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+...

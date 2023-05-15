@@ -10,4 +10,7 @@
 
 - name: EXECUTE BROWSER SETUP TASKS
   include_tasks: browser_setup.yml
+
+- name: EXECUTE APPLICATION SETTINGS TASKS
+  include_tasks: application_settings.yml
 ...
