@@ -19,13 +19,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# # set permissions on mimeapps file task
-# - name: change owner permissions on mimeapps file
-#   ansible.builtin.file:
-#     path: /home/{{ user_account }}/.config/mimeapps.list
-#     owner: "{{ user_account }}"
-#     group: "{{ user_account }}"
-
 # https://www.freedesktop.org/software/systemd/man/logind.conf.html
 - name: create logind.conf.d directory
   ansible.builtin.file:
