@@ -1,10 +1,9 @@
 ---
 # kill Nautilus task
-# need to figure out how to handle error here when Nautilus is not running and the command returns rc:1
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus
-    #ignore_errors: True # this throws errors about no longer being supported due to legacy
+  ignore_errors: True
 
 # copy gnome settings file to dest task
 - name: copy gnome settings file
@@ -25,7 +24,19 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# perform dconf update task
+# https://www.freedesktop.org/software/systemd/man/logind.conf.html
+- name: create logind.conf.d directory
+  ansible.builtin.file:
+    path: /etc/logind.conf.d
+    state: directory
 
-# perform lineinfile mod for logind.conf task
+- name: copy logind settings override file
+  ansible.builtin.copy:
+    src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
+    dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
+
+# perform dconf update task
+- name: update dconf databases
+  ansible.builtin.command:
+    cmd: dconf update
 ...
