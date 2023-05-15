@@ -29,8 +29,29 @@
   ansible.builtin.pause:
     seconds: 2
 
+- name: find user profile firefox directory
+  ansible.builtin.find:
+    paths: /home/{{ user_account }}/.mozilla/firefox
+    recurse: no
+    file_type: directory
+    use_regex: True
+    patterns:
+      - ".*default-release$"
+  register: ff_profile_dir
+
+# - name: print return information from the previous task
+#   ansible.builtin.debug:
+#     var: ff_profile_dir.files[0].path
+#   when: ff_profile_dir is defined
+
 - name: copy firefox bookmarks file
   ansible.builtin.copy:
-    src: ./home/username/.mozilla/firefox/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
-    dest: /home/{{ user_account }}/.mozilla/firefox/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
+    src: ./home/username/.mozilla/firefox/profile_directory/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
+    dest: "{{ ff_profile_dir.files[0].path }}/bookmarkbackups/bookmarks-2022-11-13.jsonlz4"
+
+# copy places.sqlite file
+
+# copy user.js file
+
+# recursive chown on ff_profile_dir
 ...
