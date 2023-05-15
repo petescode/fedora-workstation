@@ -48,6 +48,8 @@
   ansible.builtin.copy:
     src: ./home/username/.mozilla/firefox/profile_directory/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
     dest: "{{ ff_profile_dir.files[0].path }}/bookmarkbackups/bookmarks-2022-11-13.jsonlz4"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
 
 - name: remove firefox places.sqlite file
   ansible.builtin.file:
@@ -58,12 +60,14 @@
   ansible.builtin.copy:
     src: ./home/username/.mozilla/firefox/profile_directory/user.js
     dest: "{{ ff_profile_dir.files[0].path }}/user.js"
-
-- name: recursively set ownership to user
-  ansible.builtin.file:
-    path: "{{ ff_profile_dir.files[0].path }}"
-    state: directory
-    recurse: yes
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
+
+# - name: recursively set ownership to user
+#   ansible.builtin.file:
+#     path: "{{ ff_profile_dir.files[0].path }}"
+#     state: directory
+#     recurse: yes
+#     owner: "{{ user_account }}"
+#     group: "{{ user_account }}"
 ...
