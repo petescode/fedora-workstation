@@ -1,9 +1,9 @@
 ---
-#- name: EXECUTE REPO SETUP TASKS
-#  include_tasks: setup_repos.yml
+- name: EXECUTE REPO SETUP TASKS
+  include_tasks: setup_repos.yml
 
-#- name: EXECUTE PACKAGE INSTALLATION TASKS
-#  include_tasks: install_packages.yml
+- name: EXECUTE PACKAGE INSTALLATION TASKS
+  include_tasks: install_packages.yml
 
 - name: EXECUTE GNOME SETTINGS TASKS
   include_tasks: gnome_settings.yml

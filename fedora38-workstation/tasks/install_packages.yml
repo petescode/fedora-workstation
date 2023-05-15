@@ -1,45 +1,45 @@
 ---
-# consider combining many of these prior to pull request
+# # consider combining many of these prior to pull request
 
-- name: remove unwanted packages
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: absent
-  with_items:
-    - "{{ unwanted_packages }}"
+# - name: remove unwanted packages
+#   ansible.builtin.dnf:
+#     name: "{{ item }}"
+#     state: absent
+#   with_items:
+#     - "{{ unwanted_packages }}"
 
-- name: update multimedia packages
-  ansible.builtin.dnf:
-    name: '@multimedia'
-    state: latest
-    update_cache: True
-    install_weak_deps: False
-    allowerasing: True
+# - name: update multimedia packages
+#   ansible.builtin.dnf:
+#     name: '@multimedia'
+#     state: latest
+#     update_cache: True
+#     install_weak_deps: False
+#     allowerasing: True
 
-- name: update sound-and-video packages
-  ansible.builtin.dnf:
-    name: '@sound-and-video'
-    state: latest
-    install_weak_deps: True
+# - name: update sound-and-video packages
+#   ansible.builtin.dnf:
+#     name: '@sound-and-video'
+#     state: latest
+#     install_weak_deps: True
 
-- name: upgrade all current packages
-  ansible.builtin.dnf:
-    name: "*"
-    state: latest
+# - name: upgrade all current packages
+#   ansible.builtin.dnf:
+#     name: "*"
+#     state: latest
 
-- name: install base packages
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ base_packages }}"
+# - name: install base packages
+#   ansible.builtin.dnf:
+#     name: "{{ item }}"
+#     state: present
+#   with_items:
+#     - "{{ base_packages }}"
 
-- name: install RPM Fusion packages
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ fusion_packages }}"
+# - name: install RPM Fusion packages
+#   ansible.builtin.dnf:
+#     name: "{{ item }}"
+#     state: present
+#   with_items:
+#     - "{{ fusion_packages }}"
 
 - name: install proprietary packages
   ansible.builtin.dnf:
@@ -48,8 +48,8 @@
   with_items:
     - "{{ proprietary_packages }}"
 
-# as of 2023-05-14 dnf module does not support optionals
-- name: install virtualization package group
-  ansible.builtin.command:
-    cmd: dnf group install --with-optional virtualization -y
+# # as of 2023-05-14 dnf module does not support optionals
+# - name: install virtualization package group
+#   ansible.builtin.command:
+#     cmd: dnf group install --with-optional virtualization -y
 ...

@@ -1,0 +1,10 @@
+---
+# Chrome setup
+- name: copy chrome settings file
+  ansible.builtin.copy:
+    src: ./etc/opt/chrome/policies/recommended/chrome_policies.json
+    dest: /etc/opt/chrome/policies/recommended/chrome_policies.json
+
+# Firefox setup
+
+...
