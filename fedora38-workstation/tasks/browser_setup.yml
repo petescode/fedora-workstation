@@ -13,6 +13,8 @@
     cmd: "/usr/bin/firefox --headless &"
   become: True
   become_user: "{{ user_account }}"
+  async: 10
+  poll: 2
 
 - name: pause for 10 seconds to build app cache
   ansible.builtin.pause:
