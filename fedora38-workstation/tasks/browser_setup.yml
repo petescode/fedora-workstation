@@ -1,10 +1,31 @@
 ---
-# Chrome setup
+### CHROME SETUP
+
 - name: copy chrome settings file
   ansible.builtin.copy:
     src: ./etc/opt/chrome/policies/recommended/chrome_policies.json
     dest: /etc/opt/chrome/policies/recommended/chrome_policies.json
 
-# Firefox setup
+### FIREFOX SETUP
+
+- name: start firefox as the user
+  ansible.builtin.command:
+    cmd: "/usr/bin/firefox --headless &"
+  become: True
+  become_user: "{{ user_account }}"
+
+- name: pause for 10 seconds to build app cache
+  ansible.builtin.pause:
+    seconds: 10
+
+- name: kill firefox process
+  ansible.builtin.command:
+    cmd: pkill --full firefox
+  ignore_errors: True
+
+- name: pause for 2 seconds
+  ansible.builtin.pause:
+    seconds: 2
+
 
 ...
