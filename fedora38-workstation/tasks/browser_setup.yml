@@ -14,7 +14,7 @@
   become: True
   become_user: "{{ user_account }}"
   async: 10
-  poll: 2
+  poll: 0
 
 - name: pause for 10 seconds to build app cache
   ansible.builtin.pause:
