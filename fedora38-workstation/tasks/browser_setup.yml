@@ -27,5 +27,8 @@
   ansible.builtin.pause:
     seconds: 2
 
-
+- name: copy firefox bookmarks file
+  ansible.builtin.copy:
+    src: ./home/username/.mozilla/firefox/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
+    dest: /home/{{ user_account }}/.mozilla/firefox/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
 ...

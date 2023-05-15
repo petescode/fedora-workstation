@@ -27,7 +27,7 @@
 # https://www.freedesktop.org/software/systemd/man/logind.conf.html
 - name: create logind.conf.d directory
   ansible.builtin.file:
-    path: /etc/logind.conf.d
+    path: /etc/systemd/logind.conf.d
     state: directory
 
 - name: copy logind settings override file
