@@ -14,19 +14,20 @@
     name: "{{ unwanted_packages }}"
     state: absent
 
-# - name: upgrade all current packages
-#   ansible.builtin.dnf:
-#     name: "*"
-#     state: latest
+- name: upgrade all current packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: True
 
-# # needed to replace the packaged multimedia codecs with their non-free versions
-# - name: upgrade multimedia packages
-#   ansible.builtin.dnf:
-#     name: '@multimedia'
-#     state: latest
-#     update_cache: True
-#     install_weak_deps: False
-#     allowerasing: True
+# needed to replace the packaged multimedia codecs with their non-free versions
+- name: upgrade multimedia packages
+  ansible.builtin.dnf:
+    name: '@multimedia'
+    state: latest
+    #update_cache: True
+    install_weak_deps: False
+    allowerasing: True
 
 # ## does this not happen with the upgrade all packages task?
 # # - name: upgrade sound-and-video packages
@@ -34,15 +35,14 @@
 # #     name: '@sound-and-video'
 # #     state: latest
 
-# - name: install packages
-#   ansible.builtin.dnf:
-#     name: "{{ item }}"
-#     state: present
-#   with_items:
-#     - '@sound-and-video'
-#     - "{{ base_packages }}"
-#     - "{{ fusion_packages }}"
-#     - "{{ proprietary_packages }}"
+- name: install packages
+  ansible.builtin.dnf:
+    name:
+      - '@sound-and-video'
+      - "{{ base_packages }}"
+      - "{{ fusion_packages }}"
+      - "{{ proprietary_packages }}"
+    state: present
 
 # # - name: install base packages
 # #   ansible.builtin.dnf:
@@ -65,8 +65,8 @@
 # #   with_items:
 # #     - "{{ proprietary_packages }}"
 
-# # as of 2023-05-14 dnf module does not support optionals
-# - name: install virtualization package group
-#   ansible.builtin.command:
-#     cmd: dnf group install --with-optional virtualization -y
+# as of 2023-05-14 dnf module does not support optionals
+- name: install virtualization package group
+  ansible.builtin.command:
+    cmd: dnf group install --with-optional virtualization -y
 ...
