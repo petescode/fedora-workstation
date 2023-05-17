@@ -5,7 +5,6 @@
     src: ./etc/profile.d/custom_env_vars.sh
     dest: /etc/profile.d/custom_env_vars.sh
 
-# golang setup
 - name: create golang directory structure
   ansible.builtin.file:
     path: /home/{{ user_account }}/go/
@@ -18,7 +17,6 @@
     path: /home/{{ user_account }}/.bashrc
     line: export GOPATH=$HOME/go
 
-# VM directory setup
 - name: create VM directory structure
   ansible.builtin.file:
     path: /home/{{ user_account }}/Documents/VMs/ISOs

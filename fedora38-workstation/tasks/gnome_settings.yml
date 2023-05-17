@@ -1,17 +1,14 @@
 ---
-# kill Nautilus task
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus
   ignore_errors: True
 
-# copy gnome settings file to dest task
 - name: copy gnome settings file
   ansible.builtin.copy:
     src: ./etc/dconf/db/local.d/01-gnome-settings
     dest: /etc/dconf/db/local.d/01-gnome-settings
 
-# copy mimeapps file task
 - name: copy mimeapps default application settings file
   ansible.builtin.copy:
     src: ./home/username/.config/mimeapps.list
@@ -19,7 +16,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# https://www.freedesktop.org/software/systemd/man/logind.conf.html
 - name: create logind.conf.d directory
   ansible.builtin.file:
     path: /etc/systemd/logind.conf.d
@@ -30,7 +26,6 @@
     src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
     dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
 
-# perform dconf update task
 - name: update dconf databases
   ansible.builtin.command:
     cmd: dconf update

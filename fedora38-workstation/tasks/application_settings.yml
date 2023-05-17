@@ -1,5 +1,4 @@
 ---
-# terminator settings
 - name: create terminator directory structure
   ansible.builtin.file:
     path: /home/{{ user_account }}/.config/terminator/config/
@@ -14,7 +13,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# visual studio code settings
 - name: create vscode directory structure
   ansible.builtin.file:
     path: /home/{{ user_account }}/.config/Code/User/
