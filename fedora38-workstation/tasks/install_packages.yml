@@ -1,14 +1,4 @@
 ---
-# from: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
-# "When used with a loop: each package will be processed individually, it is much more efficient to pass the list directly to the name option."
-
-# - name: remove unwanted packages
-#   ansible.builtin.dnf:
-#     name: "{{ item }}"
-#     state: absent
-#   with_items:
-#     - "{{ unwanted_packages }}"
-
 - name: remove unwanted packages
   ansible.builtin.dnf:
     name: "{{ unwanted_packages }}"
@@ -20,57 +10,18 @@
     state: latest
     update_cache: True
 
-# needed to replace the packaged multimedia codecs with their non-free versions
 - name: upgrade multimedia packages
   ansible.builtin.dnf:
     name: '@multimedia'
     state: latest
-    #update_cache: True
     install_weak_deps: False
     allowerasing: True
-
-# ## does this not happen with the upgrade all packages task?
-# # - name: upgrade sound-and-video packages
-# #   ansible.builtin.dnf:
-# #     name: '@sound-and-video'
-# #     state: latest
-
-# - name: install packages
-#   ansible.builtin.dnf:
-#     name:
-#       - "{{ base_packages }}"
-#       - "{{ fusion_packages }}"
-#       - "{{ proprietary_packages }}"
-#     state: present
 
 - name: install packages
   ansible.builtin.dnf:
     name: "{{ packages }}"
-    #state: present
     state: latest
 
-# # - name: install base packages
-# #   ansible.builtin.dnf:
-# #     name: "{{ item }}"
-# #     state: present
-# #   with_items:
-# #     - "{{ base_packages }}"
-
-# # - name: install RPM Fusion packages
-# #   ansible.builtin.dnf:
-# #     name: "{{ item }}"
-# #     state: present
-# #   with_items:
-# #     - "{{ fusion_packages }}"
-
-# # - name: install proprietary packages
-# #   ansible.builtin.dnf:
-# #     name: "{{ item }}"
-# #     state: present
-# #   with_items:
-# #     - "{{ proprietary_packages }}"
-
-# as of 2023-05-14 dnf module does not support optionals
 - name: install virtualization package group
   ansible.builtin.command:
     cmd: dnf group install --with-optional virtualization -y
