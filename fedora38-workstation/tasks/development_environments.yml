@@ -1,4 +1,10 @@
 ---
+# powershell and dotnet settings
+- name: copy environment variables file
+  ansible.builtin.copy:
+    src: ./etc/profile.d/custom_env_vars.sh
+    dest: /etc/profile.d/custom_env_vars.sh
+
 # golang setup
 - name: create golang directory structure
   ansible.builtin.file:

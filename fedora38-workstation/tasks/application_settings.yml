@@ -14,12 +14,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# powershell and dotnet settings
-- name: copy environment variables file
-  ansible.builtin.copy:
-    src: ./etc/profile.d/custom_env_vars.sh
-    dest: /etc/profile.d/custom_env_vars.sh
-
 # visual studio code settings
 - name: create vscode directory structure
   ansible.builtin.file:
