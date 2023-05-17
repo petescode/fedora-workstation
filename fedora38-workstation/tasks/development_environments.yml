@@ -1,4 +1,19 @@
 ---
+# set git config settings
+- name: set git email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_email }}"
+  when: git_email is defined
+
+- name: set git commit name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_username }}"
+  when: git_username is defined
+
 # powershell and dotnet settings
 - name: copy environment variables file
   ansible.builtin.copy:
