@@ -35,13 +35,18 @@
 # #     name: '@sound-and-video'
 # #     state: latest
 
+# - name: install packages
+#   ansible.builtin.dnf:
+#     name:
+#       - "{{ base_packages }}"
+#       - "{{ fusion_packages }}"
+#       - "{{ proprietary_packages }}"
+#     state: present
+
 - name: install packages
   ansible.builtin.dnf:
     name:
-      - '@sound-and-video'
-      - "{{ base_packages }}"
-      - "{{ fusion_packages }}"
-      - "{{ proprietary_packages }}"
+      - "{{ all_packages }}"
     state: present
 
 # # - name: install base packages
