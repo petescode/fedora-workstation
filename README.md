@@ -5,18 +5,20 @@ Ansible role for Fedora Workstation
 
 ## install_packages.yml
 
-### Package lists
+Package lists
+----------------
 From: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
 "When used with a loop: each package will be processed individually, it is much more efficient to pass the list directly to the name option."
 
 This makes using loop: or with_items: pretty bad due to the number of packages this role handles.
 
 Ran into an issue when attempting to specify a series of package list variables to install like this:
-  ansible.builtin.dnf:
-    name: 
-      - "{{ foo_packages }}"
-      - "{{ bar_packages }}"
-    state: latest
+
+    ansible.builtin.dnf:
+      name: 
+        - "{{ foo_packages }}"
+        - "{{ bar_packages }}"
+      state: latest
 
 While attempting to process multiple lists like this, Ansible will end up parsing the first and last package in the list with the list delimiting bracket, which can be seen by running the playbook in verbose mode:
     "No package ['darktable' available."
