@@ -45,8 +45,7 @@
 
 - name: install packages
   ansible.builtin.dnf:
-    name:
-      - "{{ packages }}"
+    name: "{{ all_packages }}"
     #state: present
     state: latest
 
