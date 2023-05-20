@@ -45,3 +45,5 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 binding='<Control>t'
 command='terminator'
 name='terminal'
+
+# add power Mode setting (performance)

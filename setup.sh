@@ -6,6 +6,8 @@ if [[ $(id -u) -ne 0 ]]; then
     exit 1
 fi
 
+# add an option to set hostname
+
 # https://www.baeldung.com/linux/bash-parse-command-line-arguments
 VALID_ARGS=$(getopt -o u:e: --long git-username:,git-email: -- "$@")
 
@@ -30,7 +32,7 @@ while [ : ]; do
   esac
 done
 
-
+echo -e "\nInstalling Ansible...\n"
 dnf install ansible -y
 
 if [[ -z $git_username  ]] || [[ -z $git_email ]]; then

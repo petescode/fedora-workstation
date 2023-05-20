@@ -12,4 +12,8 @@
   ansible.builtin.file:
     path: /home/{{ user_account }}/.cache/thumbnails
     state: absent
+
+# last task of the role - reboot
+- name: reboot
+  ansible.builtin.reboot:
 ...

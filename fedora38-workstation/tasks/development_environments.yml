@@ -42,4 +42,11 @@
     state: directory
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
+
+- name: create virtual disks directory
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/Documents/VMs/virtual_disks
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
 ...
