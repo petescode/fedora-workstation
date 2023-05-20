@@ -39,9 +39,12 @@ There's an open bug report but it appears to have no traction: https://github.co
 
 ## gnome_settings.yml
 
-Why am I killing Nautilus? Should double check this task - inherited from old shell script
-Ansible does not have a kill module, so had to run this one in a non-idempotent way. However, if Nautilus is not actually running when the task executes, we get a return code of 1, which throws an error. Hence we must ignore_errors here.
+To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. However, if Nautilus is not actually running when the task executes, we get a return code of 1, which throws an error. Hence we must ignore_errors here.
 
-A dconf update is necessary to load the new settings. Even rebooting the system will not do this.
+A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this.
 
 Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
+
+GNOME Power Mode setting:  
+GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
+Note: in a VM, "performance" is not an option, so this task simply gets skipped.

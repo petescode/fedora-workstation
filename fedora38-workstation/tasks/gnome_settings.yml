@@ -26,26 +26,20 @@
     src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
     dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
 
-# GNOME Power Mode setting
-# GNOME recently started using the power-profiles-daemon 
-# there is no dconf setting or ansible module to manage this right now
-# but there is a command-line utility called "powerprofilesctl"
-# in a VM, "performance" is not an option
-
 - name: discover available power modes
   ansible.builtin.command:
     cmd: powerprofilesctl list
   register: power_profiles
 
-- name: print return information from the previous task
-  ansible.builtin.debug:
-    var: power_profiles
-  when: power_profiles is defined
+# - name: print return information from the previous task
+#   ansible.builtin.debug:
+#     var: power_profiles
+#   when: power_profiles is defined
 
-# - name: set power mode to performance
-#   ansible.builtin.command:
-#     cmd: powerprofilesctl set performance
-#   when: 'performance' in power_profiles
+- name: set power mode to performance
+  ansible.builtin.command:
+    cmd: powerprofilesctl set performance
+  when: '"performance" in power_profiles.stdout'
 
 - name: update dconf databases
   ansible.builtin.command:
