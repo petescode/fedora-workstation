@@ -6,7 +6,7 @@
   include_tasks: install_packages.yml
 
 - name: EXECUTE GNOME SETTINGS TASKS
- include_tasks: gnome_settings.yml
+  include_tasks: gnome_settings.yml
 
 - name: EXECUTE BROWSER SETUP TASKS
   include_tasks: browser_setup.yml
@@ -18,5 +18,5 @@
   include_tasks: development_environments.yml
 
 - name: EXECUTE CLEANUP TASKS
- include_tasks: cleanup.yml
+  include_tasks: cleanup.yml
 ...
