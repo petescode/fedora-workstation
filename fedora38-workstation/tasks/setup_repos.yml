@@ -1,13 +1,4 @@
 ---
-# - name: debug ansible distro version
-#   ansible.builtin.debug:
-#     msg: "{{ ansible_distribution_version }}"
-
-# - name: install distribution RPM GPG keys
-#   ansible.builtin.dnf:
-#     name: distribution-gpg-keys
-#     state: present
-
 - name: import repo gpg and signing keys
   ansible.builtin.rpm_key:
     key: "{{ item.location }}"

@@ -31,11 +31,6 @@
     cmd: powerprofilesctl list
   register: power_profiles
 
-# - name: print return information from the previous task
-#   ansible.builtin.debug:
-#     var: power_profiles
-#   when: power_profiles is defined
-
 - name: set power mode to performance
   ansible.builtin.command:
     cmd: powerprofilesctl set performance

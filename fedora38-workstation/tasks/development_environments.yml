@@ -1,5 +1,5 @@
 ---
-# set git config settings
+# set git config settings - these are passed to the Python script on the command-line
 - name: set git email
   community.general.git_config:
     name: user.email
