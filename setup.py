@@ -32,10 +32,12 @@ elif args.git_user is not None and args.hostname is None:
     print("execute playbook only with git extra vars")
 
 elif args.git_user is None and args.hostname is not None:
-    print("execute playbook only with hostname extra var")
+    #print("execute playbook only with hostname extra var")
+    print(f'\nCommand being executed is:\nansible-playbook {yaml_path} --extra-vars "system_hostname={args.hostname}" --ask-become-pass\n')
+    subprocess.run(["ansible-playbook", f"{yaml_path}", "--extra-vars", f"system_hostname={args.hostname}", "--ask-become-pass"])
 
 else:
-    print("execute playbook only with no extra vars (default)")
+    #print("execute playbook only with no extra vars (default)")
     print(f"\nCommand being executed is:\nansible-playbook {yaml_path} --ask-become-pass\n")
     
     subprocess.run(["ansible-playbook", f"{yaml_path}", "--ask-become-pass"])
