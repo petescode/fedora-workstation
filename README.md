@@ -55,3 +55,8 @@ The builtin hostname module fails with error:
     err=Hint: static hostname is already set, so the specified transient hostname will not be used
 
 So I used the non-idempotent hostnamectl command instead
+
+The builtin reboot module fails with error and is discussed why it won't be fixed here:  
+https://github.com/ansible/ansible/issues/57874  
+
+So used command module here also
