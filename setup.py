@@ -29,7 +29,9 @@ if args.git_user is not None and args.hostname is not None:
     print("execute playbook with all extra vars")
 
 elif args.git_user is not None and args.hostname is None:
-    print("execute playbook only with git extra vars")
+    #print("execute playbook only with git extra vars")
+    print(f'\nCommand being executed is:\nansible-playbook {yaml_path} --extra-vars "git_user={args.git_user} git_email={args.git_email}" --ask-become-pass\n')
+    subprocess.run(["ansible-playbook", f"{yaml_path}", "--extra-vars", f"git_user={args.git_user}", f"git_email={args.git_email}", "--ask-become-pass"])
 
 elif args.git_user is None and args.hostname is not None:
     #print("execute playbook only with hostname extra var")

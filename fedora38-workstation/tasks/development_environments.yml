@@ -13,10 +13,10 @@
   community.general.git_config:
     name: user.name
     scope: global
-    value: "{{ git_username }}"
+    value: "{{ git_user }}"
   become: true
   become_user: "{{ user_account }}"
-  when: git_username is defined
+  when: git_user is defined
 
 # powershell and dotnet settings
 - name: copy environment variables file
