@@ -17,6 +17,6 @@
 # - name: EXECUTE DEVELOPMENT ENVIRONMENT SETUP TASKS
 #   include_tasks: development_environments.yml
 
-# - name: EXECUTE CLEANUP TASKS
-#   include_tasks: cleanup.yml
+- name: EXECUTE CLEANUP TASKS
+  include_tasks: cleanup.yml
 ...

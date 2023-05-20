@@ -48,3 +48,10 @@ Reference for logind settings: https://www.freedesktop.org/software/systemd/man/
 GNOME Power Mode setting:  
 GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
 Note: in a VM, "performance" is not an option, so this task simply gets skipped.
+
+
+## cleanup.yml
+The builtin hostname module fails with error:  
+    err=Hint: static hostname is already set, so the specified transient hostname will not be used
+
+So I used the non-idempotent hostnamectl command instead

@@ -15,10 +15,15 @@
 
 # set hostname if optional variable was passed in setup.py
 - name: set hostname if specified
-  ansible.builtin.hostname:
-    name: "{{ system_hostname }}"
-    use: systemd
+  ansible.builtin.command:
+    cmd: "hostnamectl hostname {{ system_hostname }}"
   when: system_hostname is defined
+ 
+# - name: set hostname if specified
+#   ansible.builtin.hostname:
+#     name: "{{ system_hostname }}"
+#     use: systemd
+#   when: system_hostname is defined
 
 # last task of the role - reboot
 - name: reboot
