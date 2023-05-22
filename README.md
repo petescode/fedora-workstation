@@ -1,6 +1,23 @@
 # Functional notes
-Ansible Role for Fedora Workstation
+Ansible Role for Fedora Workstation.   
 
+I use Fedora as a desktop OS on my devices but hate manually configuring settings.  
+Since a new version comes out every 6 months, I just made an Ansible Role that I can run to automate the process of setting up all my preferred applications, settings, environments, etc.  
+
+This is actually an adaptation of a long-running bash shell script that I used to maintain to do the same thing.  
+Doing this as an Ansible Role is much cleaner.  
+
+As always, this is a work in progress. I surely forgot about half the gotchas here but I will try to add more notes each time I revisit this.  
+
+## Use
+The best way to execute this role is to use the included setup.py script. You can pass optional parameters to the script to have Ansible configure your git.user and git.email settings, as well as change the hostname.  
+It accepts both short and long options, which can be seen using the -h or --help options at the command-line.  
+
+For example:  
+```
+python setup.py -u my_git_username -e my_git_email -n my_hostname
+python setup.py --git-user my_git_username --git-email my_git_email --hostname my_hostname
+```    
 
 # Technical notes
 
@@ -21,9 +38,10 @@ Ran into an issue when attempting to specify a series of package list variables 
       state: latest
 
 While attempting to process multiple lists like this, Ansible will end up parsing the first and last package in the list with the list delimiting bracket, which can be seen by running the playbook in verbose mode:  
+```
     "No package ['darktable' available."  
     "No package 'google-chrome-stable'] available."
-
+```  
 Therefore all packages must be in a single variable list and passed to the name parameter on the same line.
 
 ### Multimedia
@@ -52,8 +70,9 @@ Note: in a VM, "performance" is not an option, so this task simply gets skipped.
 
 ## cleanup.yml
 The builtin hostname module fails with error:  
+```
     err=Hint: static hostname is already set, so the specified transient hostname will not be used
-
+```  
 So I used the non-idempotent hostnamectl command instead
 
 The builtin reboot module fails with error and is discussed why it won't be fixed here:  
