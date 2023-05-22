@@ -1,0 +1,22 @@
+---
+- name: EXECUTE REPO SETUP TASKS
+  include_tasks: setup_repos.yml
+
+- name: EXECUTE PACKAGE INSTALLATION TASKS
+  include_tasks: install_packages.yml
+
+- name: EXECUTE GNOME SETTINGS TASKS
+  include_tasks: gnome_settings.yml
+
+- name: EXECUTE BROWSER SETUP TASKS
+  include_tasks: browser_setup.yml
+
+- name: EXECUTE APPLICATION SETTINGS TASKS
+  include_tasks: application_settings.yml
+
+- name: EXECUTE DEVELOPMENT ENVIRONMENT SETUP TASKS
+  include_tasks: development_environments.yml
+
+- name: EXECUTE CLEANUP TASKS
+  include_tasks: cleanup.yml
+...

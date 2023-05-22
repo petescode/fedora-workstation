@@ -1,0 +1,27 @@
+{
+    "BookmarkBarEnabled": true,
+    "ManagedBookmarks": [
+        {
+            "toplevel_name": "Bookmarks"
+        },
+        {
+            "name": "Google",
+            "url": "https://www.google.com"
+        },
+        {
+            "name": "Youtube",
+            "url": "https://www.youtube.com"
+        }
+    ],
+    "AutofillCreditCardEnabled": false,
+    "PasswordManagerEnabled": false,
+    "PaymentMethodQueryEnabled": false,
+    "HomepageLocation": "https://www.google.com",
+    "DefaultBrowserSettingEnabled": false,
+    "RestoreOnStartup": 4,
+    "RestoreOnStartupURLs": [
+        "https://www.google.com"
+    ],
+    "BackgroundModeEnabled": false,
+    "MetricsReportingEnabled": false
+}

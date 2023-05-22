@@ -1,0 +1,28 @@
+---
+- name: remove unwanted packages
+  ansible.builtin.dnf:
+    name: "{{ unwanted_packages }}"
+    state: absent
+
+- name: upgrade all current packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: True
+
+- name: upgrade multimedia packages
+  ansible.builtin.dnf:
+    name: '@multimedia'
+    state: latest
+    install_weak_deps: False
+    allowerasing: True
+
+- name: install packages
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: latest
+
+- name: install virtualization package group
+  ansible.builtin.command:
+    cmd: dnf group install --with-optional virtualization -y
+...

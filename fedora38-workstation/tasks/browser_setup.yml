@@ -1,0 +1,65 @@
+---
+### CHROME SETUP
+
+- name: copy chrome settings file
+  ansible.builtin.copy:
+    src: ./etc/opt/chrome/policies/recommended/chrome_policies.json
+    dest: /etc/opt/chrome/policies/recommended/chrome_policies.json
+
+### FIREFOX SETUP
+
+- name: start firefox as the user
+  ansible.builtin.command:
+    cmd: "/usr/bin/firefox --headless &"
+  become: True
+  become_user: "{{ user_account }}"
+  async: 10
+  poll: 0
+
+- name: pause for 10 seconds to build app cache
+  ansible.builtin.pause:
+    seconds: 10
+
+- name: kill firefox process
+  ansible.builtin.command:
+    cmd: pkill --full firefox
+  ignore_errors: True
+
+- name: pause for 2 seconds
+  ansible.builtin.pause:
+    seconds: 2
+
+- name: find user profile firefox directory
+  ansible.builtin.find:
+    paths: /home/{{ user_account }}/.mozilla/firefox
+    recurse: no
+    file_type: directory
+    use_regex: True
+    patterns:
+      - ".*default-release$"
+  register: ff_profile_dir
+
+# - name: print return information from the previous task
+#   ansible.builtin.debug:
+#     var: ff_profile_dir.files[0].path
+#   when: ff_profile_dir is defined
+
+- name: copy firefox bookmarks file
+  ansible.builtin.copy:
+    src: ./home/username/.mozilla/firefox/profile_directory/bookmarkbackups/bookmarks-2022-11-13.jsonlz4
+    dest: "{{ ff_profile_dir.files[0].path }}/bookmarkbackups/bookmarks-2022-11-13.jsonlz4"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+- name: remove firefox places.sqlite file
+  ansible.builtin.file:
+    path: "{{ ff_profile_dir.files[0].path }}/places.sqlite"
+    state: absent
+
+- name: copy firefox user.js file
+  ansible.builtin.copy:
+    src: ./home/username/.mozilla/firefox/profile_directory/user.js
+    dest: "{{ ff_profile_dir.files[0].path }}/user.js"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+...

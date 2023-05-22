@@ -1,0 +1,42 @@
+---
+- name: kill nautilus process
+  ansible.builtin.command:
+    cmd: pkill --full nautilus
+  ignore_errors: True
+
+- name: copy gnome settings file
+  ansible.builtin.copy:
+    src: ./etc/dconf/db/local.d/01-gnome-settings
+    dest: /etc/dconf/db/local.d/01-gnome-settings
+
+- name: copy mimeapps default application settings file
+  ansible.builtin.copy:
+    src: ./home/username/.config/mimeapps.list
+    dest: /home/{{ user_account }}/.config/mimeapps.list
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+- name: create logind.conf.d directory
+  ansible.builtin.file:
+    path: /etc/systemd/logind.conf.d
+    state: directory
+
+- name: copy logind settings override file
+  ansible.builtin.copy:
+    src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
+    dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
+
+- name: discover available power modes
+  ansible.builtin.command:
+    cmd: powerprofilesctl list
+  register: power_profiles
+
+- name: set power mode to performance
+  ansible.builtin.command:
+    cmd: powerprofilesctl set performance
+  when: '"performance" in power_profiles.stdout'
+
+- name: update dconf databases
+  ansible.builtin.command:
+    cmd: dconf update
+...
