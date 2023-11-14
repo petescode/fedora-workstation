@@ -7,5 +7,5 @@
   tasks:
     - name: Configure using role
       import_role:
-        name: fedora38-workstation
+        name: fedora39-workstation
 ...

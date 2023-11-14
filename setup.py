@@ -2,7 +2,7 @@ import argparse
 import subprocess
 from pathlib import Path
 
-yaml_path = str(Path.cwd()) + "/fedora38-workstation.yml"
+yaml_path = str(Path.cwd()) + "/fedora39-workstation.yml"
 
 # Initialize parser
 parser = argparse.ArgumentParser()
