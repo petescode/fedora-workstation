@@ -12,7 +12,6 @@ show-hidden=true
 font-name='DejaVu Sans 11'
 monospace-font-name='DejaVu Sans Mono 11'
 document-font-name='DejaVu Sans 11'
-gtk-theme='Adwaita-dark'
 color-scheme='prefer-dark'
 icon-theme='Papirus'
 
