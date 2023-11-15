@@ -1,6 +1,12 @@
 ---
 ### CHROME SETUP
 
+- name: create chrome policies directory structure
+  ansible.builtin.file:
+    path: /etc/opt/chrome/policies/recommended
+    state: directory
+    mode: '0755'
+
 - name: copy chrome settings file
   ansible.builtin.copy:
     src: ./etc/opt/chrome/policies/recommended/chrome_policies.json
