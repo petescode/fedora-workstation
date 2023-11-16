@@ -1,5 +1,5 @@
 ---
-- name: Configure Fedora 38 Workstation
+- name: Configure Fedora 39 Workstation
   hosts: localhost
   connection: local
   become: True
