@@ -1,14 +1,6 @@
 # Functional notes
 Ansible Role for Fedora Workstation.   
 
-I use Fedora as a desktop OS on my devices but hate manually configuring settings.  
-Since a new version comes out every 6 months, I just made an Ansible Role that I can run to automate the process of setting up all my preferred applications, settings, environments, etc.  
-
-This is actually an adaptation of a long-running bash shell script that I used to maintain to do the same thing.  
-Doing this as an Ansible Role is much cleaner.  
-
-As always, this is a work in progress. I surely forgot about half the gotchas here but I will try to add more notes each time I revisit this.  
-
 ## Use
 The best way to execute this role is to use the included setup.py script. You can pass optional parameters to the script to have Ansible configure your git.user and git.email settings, as well as change the hostname.  
 It accepts both short and long options, which can be seen using the -h or --help options at the command-line.  
@@ -21,10 +13,14 @@ python setup.py --git-user my_git_username --git-email my_git_email --hostname m
 
 # Technical notes
 
+## Changes since last version
+The transition to GNOME 45 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
+Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See below for more details.
+
 ## install_packages.yml
 
 ### Package lists
-From: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
+From: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html  
 "When used with a loop: each package will be processed individually, it is much more efficient to pass the list directly to the name option."
 
 This makes using loop: or with_items: pretty bad due to the number of packages this role handles.
@@ -57,7 +53,7 @@ There's an open bug report but it appears to have no traction: https://github.co
 
 ## gnome_settings.yml
 
-To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. However, if Nautilus is not actually running when the task executes, we get a return code of 1, which throws an error. Hence we must ignore_errors here.
+To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. Hence we must ignore_errors here.
 
 A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this.
 
@@ -67,6 +63,9 @@ GNOME Power Mode setting:
 GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
 Note: in a VM, "performance" is not an option, so this task simply gets skipped.
 
+Dark mode theme:  
+In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.  
+Applications still using GTK3 will obey the gtk-theme setting, which coordinates to Tweaks --> Appearance --> Legacy Applications setting.
 
 ## cleanup.yml
 The builtin hostname module fails with error:  

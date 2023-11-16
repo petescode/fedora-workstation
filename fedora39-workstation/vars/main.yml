@@ -30,6 +30,7 @@ packages:
   - "vim"
   - "wireshark"
   - "wodim"
+  - "WoeUSB"
   - "yt-dlp"
   - "fuse-exfat"
   - "libdvdcss"

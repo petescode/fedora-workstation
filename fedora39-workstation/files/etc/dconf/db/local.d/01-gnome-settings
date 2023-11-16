@@ -3,7 +3,7 @@
 sort-directories-first=true
 show-hidden=true
 
-# Both file-chooser keys appear active in Fedora37
+# Both file-chooser keys appear active in Fedora 39
 [org/gtk/gtk4/settings/file-chooser]
 sort-directories-first=true
 show-hidden=true
@@ -12,9 +12,9 @@ show-hidden=true
 font-name='DejaVu Sans 11'
 monospace-font-name='DejaVu Sans Mono 11'
 document-font-name='DejaVu Sans 11'
-gtk-theme='Adwaita-dark'
 color-scheme='prefer-dark'
 icon-theme='Papirus'
+gtk-theme='HighContrastInverse'
 
 # Custom default GNOME settings for Nautilus
 [org/gnome/nautilus/preferences]
@@ -26,7 +26,7 @@ button-layout='close,minimize,maximize:appmenu'
 titlebar-font='DejaVu Sans Bold 11'
 
 [org/gnome/shell]
-favorite-apps=['firefox.desktop', 'google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop']
+favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
 
 # When to lock the screen
 [org/gnome/desktop/session]
