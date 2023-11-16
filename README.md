@@ -63,8 +63,8 @@ GNOME Power Mode setting:
 GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
 Note: in a VM, "performance" is not an option, so this task simply gets skipped.
 
-Dark mode theme:
-In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.
+Dark mode theme:  
+In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.  
 Applications still using GTK3 will obey the gtk-theme setting, which coordinates to Tweaks --> Appearance --> Legacy Applications setting.
 
 ## cleanup.yml
