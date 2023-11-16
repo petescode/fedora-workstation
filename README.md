@@ -14,13 +14,13 @@ python setup.py --git-user my_git_username --git-email my_git_email --hostname m
 # Technical notes
 
 ## Changes since last version
-The transition to GNOME 45 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/
+The transition to GNOME 45 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
 Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See below for more details.
 
 ## install_packages.yml
 
 ### Package lists
-From: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
+From: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html  
 "When used with a loop: each package will be processed individually, it is much more efficient to pass the list directly to the name option."
 
 This makes using loop: or with_items: pretty bad due to the number of packages this role handles.
