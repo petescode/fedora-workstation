@@ -1,4 +1,6 @@
 ---
+fedora_version: "40"
+
 unwanted_packages:
   - "cheese"
   - "gnome-boxes"
