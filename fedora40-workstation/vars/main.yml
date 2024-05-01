@@ -6,8 +6,13 @@ unwanted_packages:
   - "gnome-boxes"
   - "gnome-contacts"
   - "gnome-maps"
+  - "gnome-terminal"
+  - "gnome-tour"
+  - "gnome-weather"
   - "rhythmbox"
+  - "snapshot"
   - "simple-scan"
+  - "totem"
 
 packages:
   - "ansible"
