@@ -46,4 +46,8 @@ binding='<Control>t'
 command='terminator'
 name='terminal'
 
+# Clock settings
+[org/gnome/desktop/interface]
+clock-format='24h'
+
 # add power Mode setting (performance)
