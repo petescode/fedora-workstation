@@ -1,3 +1,4 @@
 {
-    "telemetry.telemetryLevel": "error"
+    "telemetry.telemetryLevel": "error",
+    "workbench.preferredHighContrastColorTheme": "Default Dark Modern"
 }
