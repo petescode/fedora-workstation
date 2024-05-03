@@ -19,10 +19,13 @@ user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("signon.rememberSignons", false);
 
-// Recommendations
+// Below settings from Arkenfox
+
+/*** [SECTION 0300]: QUIETER FOX ***/
 user_pref("extensions.getAddons.showPane", false);
 user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 user_pref("browser.discovery.enabled", false);
+user_pref("browser.shopping.experience2023.enabled", false); // [DEFAULT: false]
 
 /** TELEMETRY ***/
 /* 0330: disable new data submission [FF41+]
@@ -69,3 +72,26 @@ user_pref("browser.discovery.enabled", false);
   * [1] https://mozilla.github.io/normandy/ ***/
  user_pref("app.normandy.enabled", false);
  user_pref("app.normandy.api_url", "");
+
+/*** [SECTION 0800]: LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS ***/
+/* 0830: enable separate default search engine in Private Windows and its UI setting
+ * [SETTING] Search>Default Search Engine>Choose a different default search engine for Private Windows only ***/
+user_pref("browser.search.separatePrivateDefault", true); // [FF70+]
+user_pref("browser.search.separatePrivateDefault.ui.enabled", true); // [FF71+]
+
+/** EXTENSIONS ***/
+/* 2661: disable bypassing 3rd party extension install prompts [FF82+]
+ * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
+ user_pref("extensions.postDownloadThirdPartyPrompt", false);
+
+ /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
+ /* 2810: enable Firefox to clear items on shutdown
+ * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes | Settings ***/
+user_pref("privacy.sanitize.sanitizeOnShutdown", true);
+
+/** SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS ***/
+/* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
+ * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
+ * [1] https://en.wikipedia.org/wiki/Basic_access_authentication ***/
+ user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
+ user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
