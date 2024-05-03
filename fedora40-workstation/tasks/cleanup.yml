@@ -19,8 +19,8 @@
     cmd: "hostnamectl hostname {{ system_hostname }}"
   when: system_hostname is defined
 
-# last task of the role - reboot
-# - name: reboot!
-#   ansible.builtin.command:
-#     cmd: "systemctl reboot"
+# last task of the role - reboot in 2 minutes by default
+- name: reboot!
+  ansible.builtin.command:
+    cmd: "shutdown -r 2"
 ...
