@@ -9,7 +9,9 @@ For example:
 ```
 python setup.py -u my_git_username -e my_git_email -n my_hostname
 python setup.py --git-user my_git_username --git-email my_git_email --hostname my_hostname
-```    
+```  
+
+Note: the Ansible playbook will schedule a reboot 2 minutes after completion.    
 
 # Technical notes
 
