@@ -39,4 +39,9 @@
 - name: update dconf databases
   ansible.builtin.command:
     cmd: dconf update
+
+- name: copy Nautilus Template files
+  ansible.builtin.copy:
+    src: ./home/username/Templates/
+    dest: /home/{{ user_account }}/Templates/
 ...
