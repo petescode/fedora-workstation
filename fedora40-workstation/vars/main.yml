@@ -23,6 +23,7 @@ packages:
   - "keepassxc"
   - "lshw"
   - "lynx"
+  - "nautilus-python"
   - "nmap"
   - "nss-tools"
   - "openssl"
