@@ -44,4 +44,6 @@
   ansible.builtin.copy:
     src: ./home/username/Templates/
     dest: /home/{{ user_account }}/Templates/
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
 ...
