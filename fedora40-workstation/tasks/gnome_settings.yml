@@ -47,13 +47,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
-# - name: create nautilus-python directory
-#   ansible.builtin.file:
-#     path: /home/{{ user_account }}/.local/share/nautilus-python/extensions
-#     state: directory
-#     owner: "{{ user_account }}"
-#     group: "{{ user_account }}"
-
 - name: copy nautilus-python scripts to user profile
   ansible.builtin.copy:
     src: ./home/username/.local/share/nautilus-python/extensions/
