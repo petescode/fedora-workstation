@@ -35,4 +35,11 @@
     option: enabled
     value: 1
     backup: True
+
+- name: add flathub repo to user space
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
 ...
