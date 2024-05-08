@@ -83,15 +83,3 @@ user_pref("browser.search.separatePrivateDefault.ui.enabled", true); // [FF71+]
 /* 2661: disable bypassing 3rd party extension install prompts [FF82+]
  * [1] https://bugzilla.mozilla.org/buglist.cgi?bug_id=1659530,1681331 ***/
  user_pref("extensions.postDownloadThirdPartyPrompt", false);
-
- /*** [SECTION 2800]: SHUTDOWN & SANITIZING ***/
- /* 2810: enable Firefox to clear items on shutdown
- * [SETTING] Privacy & Security>History>Custom Settings>Clear history when Firefox closes | Settings ***/
-user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-
-/** SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS ***/
-/* 2811: set/enforce what items to clear on shutdown (if 2810 is true) [SETUP-CHROME]
- * [NOTE] "sessions": Active Logins: refers to HTTP Basic Authentication [1], not logins via cookies
- * [1] https://en.wikipedia.org/wiki/Basic_access_authentication ***/
- user_pref("privacy.clearOnShutdown.formdata", true);  // [DEFAULT: true]
- user_pref("privacy.clearOnShutdown.sessions", true);  // [DEFAULT: true]
