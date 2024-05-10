@@ -17,24 +17,13 @@
 #   https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_search_filter.html
 #   https://docs.ansible.com/ansible/latest/collections/ansible/builtin/urlsplit_filter.html
 #   https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#managing-file-names-and-path-names
-# 
 
-######################### add conditional logic to not install if not fedora version that matches us
-- name: set variable for the version of Fedora being run
-  ansible.builtin.set_fact:
-    fedora_version_string: "{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}"
 
+# Some debugging techniques for reference and future troubleshooting
+# --------------------------------------------------------------------------
 # - name: debugging
 #   ansible.builtin.debug:
 #     var: fedora_version_string
-
-### GET SPECIFIC VERSION FROM LATEST PAGE
-# we are here: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest
-- name: grab contents of the "latest" release page
-  ansible.builtin.uri:
-    url: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest
-    return_content: true
-  register: latest_release_page
 
 ## debugging
 # - set_fact:
@@ -48,6 +37,20 @@
 #     msg:
 #       var1: "{{ latest_release_page.url }}"
 #       var2: "{{ latest_release_page.url | urlsplit('path') | basename }}"
+# --------------------------------------------------------------------------
+
+- name: set variable for the version of Fedora being run
+  ansible.builtin.set_fact:
+    fedora_version_string: "{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}"
+
+
+### GET SPECIFIC VERSION FROM LATEST PAGE
+# we are here: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest
+- name: grab contents of the "latest" release page
+  ansible.builtin.uri:
+    url: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest
+    return_content: true
+  register: latest_release_page
 
 - name: parse displaylink latest version and create variables
   ansible.builtin.set_fact:
@@ -63,20 +66,12 @@
     return_content: true
   register: specific_displaylink_version_page
 
-# - name: debugging
-#   ansible.builtin.debug:
-#     msg: "{{ specific_displaylink_version_page }}"
-
 
 ### FIND THE ASSETS PAGE
 # the "Assets" section of the specific DisplayLink version page contains a forwarding url we need
 - name: parse the "Assets" section to grab the specific latest version url
   ansible.builtin.set_fact:
     assets_url: "{{ specific_displaylink_version_page.content | regex_search('https://github.com.*' + 'assets/' + displaylink_version) }}"
-
-# - name: debugging
-#   ansible.builtin.debug:
-#     msg: "{{ specific_displaylink_version_page.content | regex_search('https://github.com.*' + 'assets/' + displaylink_version) }}"
 
 
 ### FOLLOW
@@ -87,34 +82,18 @@
     return_content: true
   register: assets_page
 
-# - name: debugging
-#   ansible.builtin.debug:
-#     var: assets_page
-
 - name: regex for current Fedora version x86_64 rpm file
   ansible.builtin.set_fact:
     file_path: "{{ assets_page.content | regex_search('/.*' + fedora_version_string + '.*x86_64.rpm') }}"
 
-# - name: debugging
-#   ansible.builtin.debug:
-#     var: file_path
-
 
 ### CHECK COMPATIBILITY
 # sometimes DisplayLink lags behing Fedora releases, so we should check to make sure the latest driver actually supports this Fedora release
-# - name: ensure that the latest DisplayLink rpm is for our version of Fedora
-#   ansible.builtin.set_fact:
-#     is_compatible: True
-#   when: 'fedora_version_string in file_path'
 
 - name: ensure that the latest DisplayLink rpm is for our version of Fedora
   ansible.builtin.set_fact:
     is_compatible: "{{ True if fedora_version_string in file_path else False }}"
     #is_compatible: "{{ False if fedora_version_string in file_path else True }}" # for testing only
-
-# - name: debugging
-#   ansible.builtin.debug:
-#     var: is_compatible
 
 - name: "notify if incompatible"
   ansible.builtin.debug:
@@ -128,14 +107,6 @@
     file_name: "{{ file_path | basename }}"
     download_link: "https://github.com{{ file_path }}"
   when: is_compatible
-
-# - name: debugging
-#   ansible.builtin.debug:
-#     msg:
-#       file_path: "{{ file_path }}"
-#       file_name: "{{ file_name }}"
-#       download_link: "{{ download_link }}"
-#   when: is_compatible
 
 # we are here: https://github.com/displaylink-rpm/displaylink-rpm/releases/download/v5.8.0-3/fedora-40-displaylink-1.14.4-1.github_evdi.x86_64.rpm
 - name: download DisplayLink rpm file
