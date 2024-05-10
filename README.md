@@ -15,6 +15,9 @@ Note: the Ansible playbook will schedule a reboot 2 minutes after completion.
 
 # Technical notes
 
+VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings#_default-settings
+VS Code privacy settings: https://code.visualstudio.com/docs/supporting/FAQ
+
 ## Recent changes
 The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/
 Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See gnome_settings.yml section for more details.
