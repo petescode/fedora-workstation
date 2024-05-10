@@ -5,6 +5,9 @@
 - name: EXECUTE PACKAGE INSTALLATION TASKS
   include_tasks: install_packages.yml
 
+- name: EXECUTE DISPLAYLINK INSTALLATION TASKS
+  include_tasks: install_displaylink.yml
+
 - name: EXECUTE GNOME SETTINGS TASKS
   include_tasks: gnome_settings.yml
 

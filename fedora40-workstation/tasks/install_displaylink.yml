@@ -1,0 +1,115 @@
+---
+# latest page: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest -->
+#   specific version page: https://github.com/displaylink-rpm/displaylink-rpm/releases/tag/v5.8.0-3 -->
+#      final download page: https://github.com/displaylink-rpm/displaylink-rpm/releases/expanded_assets/v5.8.0-3 -->
+#         final download link: https://github.com/displaylink-rpm/displaylink-rpm/releases/download/v5.8.0-3/fedora-40-displaylink-1.14.4-1.github_evdi.x86_64.rpm
+
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/regex_search_filter.html
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/urlsplit_filter.html
+# https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#managing-file-names-and-path-names
+# 
+
+# DisplayLink is a common driver for docking stations. It allows you to plug monitors into the docking station and connect the docking station to your computer via USB.
+# It is only necessary for the video connectionson the docking station to work - other ports such as Ethernet, audio, and USB ports will work without a DisplayLink driver.
+
+
+### GET LATEST VERSION
+
+# get latest displaylink page
+- name: grab contents of web page
+  ansible.builtin.uri:
+    url: https://github.com/displaylink-rpm/displaylink-rpm/releases/latest
+    return_content: true
+  register: latest_release_webpage
+
+# - set_fact:
+#     elements: "{{ latest_release_webpage|list }}"
+# - debug:
+#     var: item
+#   loop: "{{ elements }}"
+
+- name: print return information from the previous task
+  ansible.builtin.debug:
+    msg:
+      var1: "{{ latest_release_webpage.url }}"
+      var2: "{{ latest_release_webpage.url | urlsplit('path') | basename }}"
+
+- name: set displaylink latest version to variable
+  ansible.builtin.set_fact:
+    specific_version_url: "{{ latest_release_webpage.url }}"
+    version: "{{ latest_release_webpage.url | urlsplit('path') | basename }}"
+
+
+### FOLLOW
+# get specific version page that "latest" points to
+- name: grab contents of web page
+  ansible.builtin.uri:
+    url: "{{ specific_version_url }}"
+    return_content: true
+  register: specific_version_webpage
+
+# - name: test
+#   ansible.builtin.debug:
+#     msg: "{{ specific_version_webpage }}"
+
+### FIND THE ASSETS PAGE
+
+- name: regex for the "Assets" page which contains the actual download links
+  ansible.builtin.set_fact:
+    assets_url: "{{ specific_version_webpage.content | regex_search('https://github.com.*' + 'assets/' + version) }}"
+
+# - name: test
+#   ansible.builtin.debug:
+#     msg: "{{ specific_version_webpage.content | regex_search('https://github.com.*' + 'assets/' + version) }}"
+
+
+### FOLLOW
+- name: grab contents assets download page
+  ansible.builtin.uri:
+    url: "{{ assets_url }}"
+    return_content: true
+  register: assets_page
+
+# - name: test
+#   ansible.builtin.debug:
+#     var: assets_page
+
+
+
+### GRAB FINAL DOWNLOAD URL
+
+# /displaylink-rpm/displaylink-rpm/releases/download/v5.8.0-3/fedora-40-displaylink-1.14.4-1.github_evdi.x86_64.rpm
+
+- name: regex for current Fedora version x86_64 rpm file
+  ansible.builtin.set_fact:
+    file_path: "{{ assets_page.content | regex_search('/.*fedora-40.*x86_64.rpm') }}"
+  
+- name: set fact for download link
+  ansible.builtin.set_fact:
+    file_name: "{{ file_path | basename }}"
+    download_link: "https://github.com{{ file_path }}"
+
+- name: print return information from the previous task
+  ansible.builtin.debug:
+    msg:
+      var1: "{{ file_path }}"
+      var2: "{{ file_name }}"
+      var3: "{{ download_link }}"
+
+
+### DOWNLOAD THE RPM FILE
+- name: download DisplayLink rpm file
+  ansible.builtin.get_url:
+    url: "{{ download_link }}"
+    dest: "/home/{{ user_account }}/Downloads"
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+### INSTALL
+- name: Install DisplayLink rpm from a local file
+  ansible.builtin.dnf:
+    name: "/home/{{ user_account }}/Downloads/{{ file_name }}"
+    state: present
+    disable_gpg_check: True
+
+...
