@@ -19,6 +19,9 @@ VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings
 VS Code privacy settings: https://code.visualstudio.com/docs/supporting/FAQ
 
 ## Recent changes
+Fedora 39 implemented an ugly PS1 shell prompt: https://fedoraproject.org/wiki/Changes/Color_Bash_Prompt
+Fixed by adding custom PS1 to user .bashrc file
+
 The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/
 Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See gnome_settings.yml section for more details.
 
