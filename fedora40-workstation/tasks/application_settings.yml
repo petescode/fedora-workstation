@@ -13,6 +13,11 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
+- name: insert custom PS1 into user .bashrc file
+  ansible.builtin.lineinfile:
+    path: /home/{{ user_account }}/.bashrc
+    line: 'export PS1="\[\e]0;\u@\h: \w\a\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "'
+
 - name: create vscode directory structure
   ansible.builtin.file:
     path: /home/{{ user_account }}/.config/Code/User/
