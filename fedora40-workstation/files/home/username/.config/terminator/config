@@ -7,6 +7,9 @@
     foreground_color = "#bababa"
     palette = "#000000:#e8341c:#68c256:#f2d42c:#1c98e8:#8e69c9:#1c98e8:#bababa:#000000:#e05a4f:#77b869:#efd64b:#387cd3:#957bbe:#3d97e2:#bababa"
     use_theme_colors = True
+    title_hide_sizetext = True
+    title_transmit_bg_color = "#3584e4"
+    title_receive_bg_color = "#99c1f1"
 [layouts]
   [[default]]
     [[[window0]]]
