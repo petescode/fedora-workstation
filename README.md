@@ -7,6 +7,7 @@ It accepts both short and long options, which can be seen using the -h or --help
 
 For example:  
 ```
+./setup.py
 python setup.py -u my_git_username -e my_git_email -n my_hostname
 python setup.py --git-user my_git_username --git-email my_git_email --hostname my_hostname
 ```  
