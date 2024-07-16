@@ -1,0 +1,53 @@
+---
+# set git config settings - these are passed to the Python script on the command-line
+- name: set git email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_email }}"
+  become: true
+  become_user: "{{ user_account }}"
+  when: git_email is defined
+
+- name: set git commit name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user }}"
+  become: true
+  become_user: "{{ user_account }}"
+  when: git_user is defined
+
+# powershell and dotnet settings
+- name: copy environment variables file
+  ansible.builtin.copy:
+    src: ./etc/profile.d/custom_env_vars.sh
+    dest: /etc/profile.d/custom_env_vars.sh
+
+- name: create golang directory structure
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/go/
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+# appends to end of file by default
+- name: insert GOPATH into user .bashrc file
+  ansible.builtin.lineinfile:
+    path: /home/{{ user_account }}/.bashrc
+    line: export GOPATH=$HOME/go
+
+- name: create VM directory structure
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/Documents/VMs/ISOs
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+
+- name: create virtual disks directory
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/Documents/VMs/virtual_disks
+    state: directory
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+...

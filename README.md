@@ -7,15 +7,24 @@ It accepts both short and long options, which can be seen using the -h or --help
 
 For example:  
 ```
+./setup.py
 python setup.py -u my_git_username -e my_git_email -n my_hostname
 python setup.py --git-user my_git_username --git-email my_git_email --hostname my_hostname
-```    
+```  
+
+Note: A reboot is needed upon completion, but I have disabled the automated task for this so that you can review changes first if you wish.    
 
 # Technical notes
 
-## Changes since last version
-The transition to GNOME 45 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
-Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See below for more details.
+VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings#_default-settings  
+VS Code privacy settings: https://code.visualstudio.com/docs/supporting/FAQ
+
+## Recent changes
+Fedora 39 implemented an ugly PS1 shell prompt: https://fedoraproject.org/wiki/Changes/Color_Bash_Prompt  
+Fixed by adding custom PS1 to user .bashrc file
+
+The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
+Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See gnome_settings.yml section for more details.
 
 ## install_packages.yml
 
@@ -43,9 +52,6 @@ Therefore all packages must be in a single variable list and passed to the name 
 ### Multimedia
 The "multimedia" package group install must be its own task due to the requirements of "install_weak_deps: False" and "allowerasing: True"
 Fedora comes packages with free versions of some codecs but these need to be replaced by the nonfree versions, which causes a conflict during a normal install operation.
-
-Removed the "sound-and-video" package group installation. Discovered that without --with-optional it actually does nothing.
-Since I've been using it this way for years and never had an issue with multimedia, I obviously don't need it.
 
 ### Virtualization group
 The ansible.builtin.dnf module does not currently support using the group install option "--with-optional" that is needed.

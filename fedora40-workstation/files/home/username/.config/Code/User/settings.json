@@ -1,0 +1,9 @@
+{
+    "editor.fontWeight": "500",
+    "editor.fontSize": 14.5,
+    "telemetry.telemetryLevel": "error",
+    "update.mode": "none",
+    "workbench.enableExperiments": false,
+    "workbench.preferredHighContrastColorTheme": "Default Dark Modern",
+    "workbench.startupEditor": "none"
+}

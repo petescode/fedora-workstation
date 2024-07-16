@@ -1,0 +1,26 @@
+---
+# need to remove the existing user settings so it reloads from the new defaults that you've just setup
+# otherwise, existing user settings override the defaults and no change occurs
+- name: remove dconf user file
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/.config/dconf/user
+    state: absent
+
+# have to delete the thumbnail cache or changes will not take effect
+# thumbnail directory does not get created until a preview is generated in Nautilus for the first time
+- name: recusively remove thumbnails directory
+  ansible.builtin.file:
+    path: /home/{{ user_account }}/.cache/thumbnails
+    state: absent
+
+# set hostname if optional variable was passed in setup.py
+- name: set hostname if specified
+  ansible.builtin.command:
+    cmd: "hostnamectl hostname {{ system_hostname }}"
+  when: system_hostname is defined
+
+# # last task of the role - reboot in 2 minutes by default
+# - name: reboot!
+#   ansible.builtin.command:
+#     cmd: "shutdown -r 2"
+...

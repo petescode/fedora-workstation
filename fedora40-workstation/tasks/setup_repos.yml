@@ -1,0 +1,45 @@
+---
+- name: import repo gpg and signing keys
+  ansible.builtin.rpm_key:
+    key: "{{ item.location }}"
+    state: present
+  with_items:
+    - "{{ repo_keys }}"
+
+- name: install RPM Fusion free and nonfree repos
+  ansible.builtin.dnf:
+    name: "{{ item.location }}"
+    state: present
+  with_items:
+    - "{{ repos }}"
+
+- name: copy Microsoft Teams repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/teams.repo
+    dest: /etc/yum.repos.d/teams.repo
+
+- name: copy Microsoft Powershell repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/powershell.repo
+    dest: /etc/yum.repos.d/powershell.repo
+
+- name: copy Microsoft Visual Studio Code repo file
+  ansible.builtin.copy:
+    src: ./etc/yum.repos.d/vscode.repo
+    dest: /etc/yum.repos.d/vscode.repo
+
+- name: enable the google chrome repo
+  community.general.ini_file:
+    path: /etc/yum.repos.d/google-chrome.repo
+    section: google-chrome
+    option: enabled
+    value: 1
+    backup: True
+
+- name: add flathub repo to user space
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+...
