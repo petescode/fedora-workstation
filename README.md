@@ -12,18 +12,18 @@ python setup.py -u my_git_username -e my_git_email -n my_hostname
 python setup.py --git-user my_git_username --git-email my_git_email --hostname my_hostname
 ```  
 
-Note: the Ansible playbook will schedule a reboot 2 minutes after completion.    
+Note: A reboot is needed upon completion, but I have disabled the automated task for this so that you can review changes first if you wish.    
 
 # Technical notes
 
-VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings#_default-settings
+VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings#_default-settings  
 VS Code privacy settings: https://code.visualstudio.com/docs/supporting/FAQ
 
 ## Recent changes
-Fedora 39 implemented an ugly PS1 shell prompt: https://fedoraproject.org/wiki/Changes/Color_Bash_Prompt
+Fedora 39 implemented an ugly PS1 shell prompt: https://fedoraproject.org/wiki/Changes/Color_Bash_Prompt  
 Fixed by adding custom PS1 to user .bashrc file
 
-The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/
+The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
 Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file. See gnome_settings.yml section for more details.
 
 ## install_packages.yml
