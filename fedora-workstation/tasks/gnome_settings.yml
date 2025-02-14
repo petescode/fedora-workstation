@@ -2,26 +2,15 @@
 # The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
 # Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file
 
-# To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. Hence we must ignore_errors here.
 
-# A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this.
-
-# Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
-
-#GNOME Power Mode setting:  
-#GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
-#Note: in a VM, "performance" is not an option, so this task simply gets skipped.
-
-#Dark mode theme:  
-#In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.  
-#Applications still using GTK3 will obey the gtk-theme setting, which coordinates to Tweaks --> Appearance --> Legacy Applications setting.
-
-
+# To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. Hence we must ignore_errors here
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus
   ignore_errors: True
 
+# In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.  
+# Applications still using GTK3 will obey the gtk-theme setting, which coordinates to Tweaks --> Appearance --> Legacy Applications setting.
 - name: copy gnome settings file
   ansible.builtin.copy:
     src: ./etc/dconf/db/local.d/01-gnome-settings
@@ -34,6 +23,7 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
+# Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
 - name: create logind.conf.d directory
   ansible.builtin.file:
     path: /etc/systemd/logind.conf.d
@@ -44,31 +34,28 @@
     src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
     dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
 
-- name: discover available power modes
-  ansible.builtin.command:
-    cmd: powerprofilesctl list
-  register: power_profiles
+# potential future placeholder here for tuned-adm command / pdd.conf but currently bugged (see NEWS.md)
+# see commands:
+# - tuned-adm profile --help
+# - tuned-adm verify
 
-- name: set power mode to performance
-  ansible.builtin.command:
-    cmd: powerprofilesctl set performance
-  when: '"performance" in power_profiles.stdout'
-
+# A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this
 - name: update dconf databases
   ansible.builtin.command:
     cmd: dconf update
 
-- name: copy Nautilus Template files
-  ansible.builtin.copy:
-    src: ./home/username/Templates/
-    dest: /home/{{ user_account }}/Templates/
-    owner: "{{ user_account }}"
-    group: "{{ user_account }}"
+# Removed the below feature in Fedora 41 but leaving tasks in place to potentially revisit in the future
+# - name: copy Nautilus Template files
+#   ansible.builtin.copy:
+#     src: ./home/username/Templates/
+#     dest: /home/{{ user_account }}/Templates/
+#     owner: "{{ user_account }}"
+#     group: "{{ user_account }}"
 
-- name: copy nautilus-python scripts to user profile
-  ansible.builtin.copy:
-    src: ./home/username/.local/share/nautilus-python/extensions/
-    dest: /home/{{ user_account }}/.local/share/nautilus-python/extensions/
-    owner: "{{ user_account }}"
-    group: "{{ user_account }}"
+# - name: copy nautilus-python scripts to user profile
+#   ansible.builtin.copy:
+#     src: ./home/username/.local/share/nautilus-python/extensions/
+#     dest: /home/{{ user_account }}/.local/share/nautilus-python/extensions/
+#     owner: "{{ user_account }}"
+#     group: "{{ user_account }}"
 ...
