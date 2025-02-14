@@ -1,4 +1,22 @@
 ---
+# The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
+# Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file
+
+# To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. Hence we must ignore_errors here.
+
+# A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this.
+
+# Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
+
+#GNOME Power Mode setting:  
+#GNOME recently started using the power-profiles-daemon, but there is no dconf setting or ansible module to manage this right now.  
+#Note: in a VM, "performance" is not an option, so this task simply gets skipped.
+
+#Dark mode theme:  
+#In 01-gnome-settings file, 'color-scheme' coordinates with the UI Settings --> Appearance --> Style option, which applications using GTK4 will obey.  
+#Applications still using GTK3 will obey the gtk-theme setting, which coordinates to Tweaks --> Appearance --> Legacy Applications setting.
+
+
 - name: kill nautilus process
   ansible.builtin.command:
     cmd: pkill --full nautilus

@@ -1,5 +1,5 @@
 ---
-# defaults file for fedora40-workstation
+# defaults file for fedora41-workstation
 
 repo_keys:
   - name: RPM Fusion free repo gpg key

@@ -22,6 +22,8 @@
     name: "{{ packages }}"
     state: latest
 
+# The ansible.builtin.dnf module does not support using the group install option "--with-optional" that is needed.
+# Looks like issue will not be fixed: https://github.com/ansible/ansible/issues/67187
 - name: install virtualization package group
   ansible.builtin.command:
     cmd: dnf group install --with-optional virtualization -y

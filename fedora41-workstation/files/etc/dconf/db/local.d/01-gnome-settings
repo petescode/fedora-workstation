@@ -3,7 +3,7 @@
 sort-directories-first=true
 show-hidden=true
 
-# Both file-chooser keys appear active in Fedora 40
+# Both file-chooser keys appear active in Fedora 41
 [org/gtk/gtk4/settings/file-chooser]
 sort-directories-first=true
 show-hidden=true
