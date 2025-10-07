@@ -13,10 +13,10 @@
   with_items:
     - "{{ repos }}"
 
-- name: copy Microsoft Teams repo file
-  ansible.builtin.copy:
-    src: ./etc/yum.repos.d/teams.repo
-    dest: /etc/yum.repos.d/teams.repo
+#- name: copy Microsoft Teams repo file
+#  ansible.builtin.copy:
+#    src: ./etc/yum.repos.d/teams.repo
+#    dest: /etc/yum.repos.d/teams.repo
 
 - name: copy Microsoft Powershell repo file
   ansible.builtin.copy:

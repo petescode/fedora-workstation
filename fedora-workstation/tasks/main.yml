@@ -5,8 +5,8 @@
 - name: EXECUTE PACKAGE INSTALLATION TASKS
   include_tasks: install_packages.yml
 
-- name: EXECUTE DISPLAYLINK INSTALLATION TASKS
-  include_tasks: install_displaylink.yml
+#- name: EXECUTE DISPLAYLINK INSTALLATION TASKS
+#  include_tasks: install_displaylink.yml
 
 - name: EXECUTE APPLICATION SETTINGS TASKS
   include_tasks: application_settings.yml

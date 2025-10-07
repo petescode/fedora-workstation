@@ -24,15 +24,15 @@
     group: "{{ user_account }}"
 
 # Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
-- name: create logind.conf.d directory
-  ansible.builtin.file:
-    path: /etc/systemd/logind.conf.d
-    state: directory
+#- name: create logind.conf.d directory
+#  ansible.builtin.file:
+#    path: /etc/systemd/logind.conf.d
+#    state: directory
 
-- name: copy logind settings override file
-  ansible.builtin.copy:
-    src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
-    dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
+#- name: copy logind settings override file
+#  ansible.builtin.copy:
+#    src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
+#    dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
 
 # potential future placeholder here for tuned-adm command / pdd.conf but currently bugged (see NEWS.md)
 # see commands:
