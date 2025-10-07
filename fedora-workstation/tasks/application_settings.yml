@@ -25,6 +25,8 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
 
+# VS Code default settings: https://code.visualstudio.com/docs/getstarted/settings#_default-settings  
+# VS Code privacy settings: https://code.visualstudio.com/docs/supporting/FAQ
 - name: copy vscode settings file
   ansible.builtin.copy:
     src: ./home/username/.config/Code/User/settings.json

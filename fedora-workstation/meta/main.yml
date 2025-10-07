@@ -1,9 +1,9 @@
 galaxy_info:
-  author: Pete Wood
-  description: Fedora 40 Workstation
+  author: petescode
+  description: Fedora Workstation
   license: MIT
   min_ansible_version: 2.1
   platforms:
   - name: Fedora
     versions:
-    - 40
+    - 41

@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 
 def main():
-    yaml_path = str(Path.cwd()) + "/fedora40-workstation.yml"
+    yaml_path = str(Path.cwd()) + "/fedora-workstation.yml"
 
     # Initialize parser
     parser = argparse.ArgumentParser()

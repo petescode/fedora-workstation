@@ -1,5 +1,5 @@
 ---
-- name: Configure Fedora 40 Workstation
+- name: Configure Fedora Workstation
   hosts: localhost
   connection: local
   become: True
@@ -7,5 +7,5 @@
   tasks:
     - name: Configure using role
       import_role:
-        name: fedora40-workstation
+        name: fedora-workstation
 ...

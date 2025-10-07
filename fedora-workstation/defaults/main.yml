@@ -1,6 +1,4 @@
 ---
-# defaults file for fedora40-workstation
-
 repo_keys:
   - name: RPM Fusion free repo gpg key
     location: "/usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-{{ ansible_distribution_version }}"
