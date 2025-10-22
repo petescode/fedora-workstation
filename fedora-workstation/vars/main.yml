@@ -15,6 +15,7 @@ packages:
   - "code"
   - "darktable"
   - "dconf-editor"
+  - "discord"
   - "dnf-utils"
   - "fuse-exfat"
   - "gnome-screenshot"
