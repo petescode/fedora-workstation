@@ -16,5 +16,4 @@ repos:
     location: "rpmfusion-free-release-tainted"
   - name: RPM Fusion nonfree tainted repository
     location: "rpmfusion-nonfree-release-tainted"
-
 ...

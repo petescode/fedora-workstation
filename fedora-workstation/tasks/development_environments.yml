@@ -18,7 +18,7 @@
   become_user: "{{ user_account }}"
   when: git_user is defined
 
-# powershell and dotnet settings
+# dotnet telemetry disablement for Microsoft products
 - name: copy environment variables file
   ansible.builtin.copy:
     src: ./etc/profile.d/custom_env_vars.sh

@@ -1,37 +1,45 @@
-# Custom default GNOME settings for file-chooser (affects Nautilus)
+# Nautilus on Fedora 42 (with GNOME 48) uses this legacy gtk setting
 [org/gtk/settings/file-chooser]
 sort-directories-first=true
 show-hidden=true
 
-[org/gtk/gtk4/settings/file-chooser]
-sort-directories-first=true
-show-hidden=true
+# does not appear to affect Nautilus in GNOME 48
+#[org/gtk/gtk4/settings/file-chooser]
+#sort-directories-first=true
+#show-hidden=true
 
 [org/gnome/desktop/interface]
-font-name='DejaVu Sans 11'
-monospace-font-name='DejaVu Sans Mono 11'
-document-font-name='DejaVu Sans 11'
+clock-format='24h'
 color-scheme='prefer-dark'
+document-font-name='DejaVu Sans 11'
+font-name='DejaVu Sans 11'
 icon-theme='Papirus'
+# gtk-theme affects legacy applications still using gtk and not gtk4
+#  these include terminator, Virtual Machine Manager, and others
 gtk-theme='HighContrastInverse'
+monospace-font-name='DejaVu Sans Mono 11'
 
-# Custom default GNOME settings for Nautilus
-[org/gnome/nautilus/preferences]
-default-folder-viewer='list-view'
-thumbnail-limit='100'
+# When to lock the screen; currently BROKEN
+[org/gnome/desktop/session]
+idle-delay=1800
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close,minimize,maximize:appmenu'
 titlebar-font='DejaVu Sans Bold 11'
 
+# Nautilus = the file manager
+[org/gnome/nautilus/preferences]
+default-folder-viewer='list-view'
+thumbnail-limit='100'
+
+# fractional scaling (experimental in GNOME 48)
+[org/gnome/mutter]
+experimental-features=['scale-monitor-framebuffer']
+
 [org/gnome/shell]
-favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
+favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
 
-# When to lock the screen
-[org/gnome/desktop/session]
-idle-delay=1800
-
-# when to go to sleep when on charger
+# when to go to sleep when on charger; untested but likely BROKEN
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
@@ -44,7 +52,3 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 binding='<Control>t'
 command='terminator'
 name='terminal'
-
-# Clock settings
-[org/gnome/desktop/interface]
-clock-format='24h'

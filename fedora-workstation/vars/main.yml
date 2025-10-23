@@ -1,10 +1,8 @@
 ---
 unwanted_packages:
-  - "cheese"
   - "gnome-boxes"
   - "gnome-contacts"
   - "gnome-maps"
-  - "gnome-terminal"
   - "gnome-tour"
   - "gnome-weather"
   - "rhythmbox"
@@ -14,39 +12,39 @@ unwanted_packages:
 
 packages:
   - "ansible"
+  - "code"
   - "darktable"
   - "dconf-editor"
+  - "discord"
   - "dnf-utils"
+  - "fuse-exfat"
   - "gnome-screenshot"
   - "gnome-tweaks"
   - "golang"
+  - "google-chrome-stable"
   - "keepassxc"
+  - "libdvdcss"
   - "lshw"
-  - "lynx"
-  - "nautilus-python"
+  #- "nautilus-python"
   - "nmap"
   - "nss-tools"
-  - "openssl"
-  - "openvpn"
+  - "openssl" # already installed F42
+  - "openvpn" # already installed F42
   - "papirus-icon-theme"
   - "perl-Image-ExifTool"
   - "pinta"
+  - "python-vlc"
   - "p7zip"
   - "remmina"
-  - "smartmontools"
-  - "sqlite"
+  - "smartmontools" # already installed F42
+  #- "sqlite"
   - "terminator"
   - "vim"
+  - "vlc"
   - "wireshark"
   - "wodim"
   - "yt-dlp"
-  - "fuse-exfat"
-  - "libdvdcss"
-  - "python-vlc"
-  - "vlc"
-  - "*-firmware"
-  - "code"
-  - "google-chrome-stable"
+  - "*-firmware" # review this for F43
 
 user_account: "{{ ansible_env.USERNAME }}"
 ...
