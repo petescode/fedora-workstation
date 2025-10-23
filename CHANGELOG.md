@@ -1,4 +1,14 @@
-# Fedora 42 changes
+# Fedora 43 changes
+
+
+## Known issues
+
+
+## Future enhancements
+
+#
+# Previous versions
+## Fedora 42 changes
 - Disabled logind settings
     - Lost track of reason why, review in future release
 
@@ -24,13 +34,13 @@
     - Added Discord to install list
 
 
-## Known issues
+### Known issues
 - The "*-firmware" package installation is actually installing quite a bit of stuff we probably don't need at all, potentially causing slower run times and bloat
 
 - There are multiple power related settings currently not working, due to the migration to the tuned daemon. Target potentially updating these for F43
 
 
-## Future enhancements
+### Future enhancements
 Note: items listed here are either planned future changes or ideas to experiment with in the next Fedora release
 
 - Install a 3rd party legacy GTK theme in order to get more options
@@ -51,10 +61,8 @@ Note: items listed here are either planned future changes or ideas to experiment
 - Consider leaving VSCode tab X button to right with window buttons to left
 
 - Track RHEL-branching in CHANGELOG and retroactively mark which versions of Fedora RHEL has been forked from
+
 #
-# Previous versions
-
-
 ## Fedora 41 changes
 - Few changes to this project for Fedora 41 other than compatibility tweaks
 
