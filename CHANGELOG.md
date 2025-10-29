@@ -4,10 +4,18 @@
 - Added the enablement of RPM Fusion appstream data
     - This is the equivalent of running the "sudo dnf group upgrade core" step from the docs 
 
+- Removed some packages that were either already installed by default now or obsolete
+    - This included the fuse-exfat package which was used in the past for interacting with exFAT filesystems, but that capability was apparently merged in kernel v5.4
 
+- Changed how firmware packages are installed
+    - Removed the wildcard "*-firmware" package which retrieved dozens of random packages
+    - After researching all packages pulled by that wildcard, I added only ones I felt were relevant for most common devices
+    - Created a separate variable for these firmware packages so that it is more obvious if they cause a failure in the overall run
 
 ## Known issues
-
+- A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
+    - This is used for some integrated webcams in laptops that use Intel Tiger Lake, Alder Lake, Raptor Lake and Meteor Lake
+    - Since this was tested the day of F43 release, it's likely the package will be fixed in the future
 
 ## Future enhancements
 
