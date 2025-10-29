@@ -1,4 +1,12 @@
 ---
+- name: enhance dnf speeds
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    insertafter: '^\[main\]$'
+    line: 'max_parallel_downloads=10'
+    state: present
+    firstmatch: True
+
 - name: import repo gpg and signing keys
   ansible.builtin.rpm_key:
     key: "{{ item.location }}"
