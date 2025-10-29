@@ -1,4 +1,9 @@
 # Fedora 43 changes
+- Added dnf.conf parallel download setting to increase performance 
+
+- Added the enablement of RPM Fusion appstream data
+    - This is the equivalent of running the "sudo dnf group upgrade core" step from the docs 
+
 
 
 ## Known issues

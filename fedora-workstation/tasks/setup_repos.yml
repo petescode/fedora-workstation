@@ -21,6 +21,11 @@
   with_items:
     - "{{ repos }}"
 
+- name: enable appstream data from RPM Fusion repos
+  ansible.builtin.dnf:
+    name: '@Core'
+    state: latest
+
 - name: copy Microsoft Visual Studio Code repo file
   ansible.builtin.copy:
     src: ./etc/yum.repos.d/vscode.repo
