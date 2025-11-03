@@ -1,0 +1,9 @@
+---
+# set the default power profile to performance
+- name: Set tuned profile to virtual-guest
+  ansible.builtin.command: tuned-adm profile throughput-performance
+
+
+# if laptop, set different power modes for charging vs disconnected
+
+...
