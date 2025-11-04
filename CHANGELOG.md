@@ -12,10 +12,9 @@
     - After researching all packages pulled by that wildcard, I added only ones I felt were relevant for most common devices
     - Created a separate variable for these firmware packages so that it is more obvious if they cause a failure in the overall run
 
-- Set default power profile to performance mode
+- Set power profiles based on the type of device/installation
     - This is now managed via the tuned daemon starting with Fedora 42
-    - Ansible does not have a module for tuned at this time
-    - tuned-adm is the normal command-line tool for managing tuned
+    - Ansible does not have a module for tuned at this time, must use the tuned-adm command
     - The current power profile is set in this file: /etc/tuned/active_profile
 
 ## Known issues
