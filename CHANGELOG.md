@@ -17,6 +17,10 @@
     - Ansible does not have a module for tuned at this time, must use the tuned-adm command
     - The current power profile is set in this file: /etc/tuned/active_profile
 
+- Fixed broken power settings, including:
+    - Lock screen / idle timeout
+
+
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
     - This is used for some integrated webcams in laptops that use Intel Tiger Lake, Alder Lake, Raptor Lake and Meteor Lake
