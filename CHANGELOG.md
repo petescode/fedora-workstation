@@ -20,6 +20,8 @@
 - Fixed broken power settings, including:
     - Lock screen / idle timeout
 
+- Removed fractional scaling as an experimental GNOME setting because GNOME 49 flipped it to production (non-experimental) and enabled by default
+
 
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop

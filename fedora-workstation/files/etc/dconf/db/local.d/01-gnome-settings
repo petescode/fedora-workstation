@@ -35,10 +35,6 @@ titlebar-font='DejaVu Sans Bold 11'
 default-folder-viewer='list-view'
 thumbnail-limit='100'
 
-# fractional scaling (experimental in GNOME 48)
-[org/gnome/mutter]
-experimental-features=['scale-monitor-framebuffer']
-
 [org/gnome/shell]
 favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
 
