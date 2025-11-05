@@ -36,7 +36,7 @@ default-folder-viewer='list-view'
 thumbnail-limit='100'
 
 [org/gnome/shell]
-favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Screenshot.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
+favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
 
 # when to go to sleep when on charger; BROKEN (was this a ppd thing?)
 [org/gnome/settings-daemon/plugins/power]
