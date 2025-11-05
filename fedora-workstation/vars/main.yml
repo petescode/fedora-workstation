@@ -3,11 +3,13 @@ unwanted_packages:
   - "decibels" # audio player app
   - "gnome-boxes"
   - "gnome-contacts"
+  - "gnome-connections" # the connections app is a remote desktop app
   - "gnome-maps"
-  - "gnome-remote-desktop"
+  - "gnome-remote-desktop" # another remote desktop app
   - "gnome-tour"
   - "gnome-weather"
   - "malcontent-control" # parental control app
+  - "showtime" # video player app
   - "snapshot" # camera app
 
 packages:
@@ -17,7 +19,6 @@ packages:
   - "dconf-editor"
   - "discord"
   - "dnf-utils"
-  - "gnome-screenshot"
   - "gnome-tweaks"
   - "golang"
   - "google-chrome-stable"

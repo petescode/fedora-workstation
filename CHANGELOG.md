@@ -22,6 +22,11 @@
 
 - Removed fractional scaling as an experimental GNOME setting because GNOME 49 flipped it to production (non-experimental) and enabled by default
 
+- Screenshotting has changed significantly
+    - The deprecated gnome-screenshot standalone-rpm tool has finally broken in GNOME 49 and since it is unmaintained it will not be fixed
+    - The native screenshot tool is lacking features, namely a timer option, and also cannot be pinned to the dock because it is part of the shell (like the power options menu for example)
+    - At this time, I have found no good substitute because pretty much all screenshot tools do not work well with Wayland - this has something to do with security features implemented by Wayland
+    - So the only way to do screenshots currently is to use the PrtScn button on your keyboard, which is using the new built-in screenshot tool
 
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
