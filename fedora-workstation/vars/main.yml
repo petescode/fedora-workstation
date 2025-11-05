@@ -1,14 +1,14 @@
 ---
 unwanted_packages:
+  - "decibels" # audio player app
   - "gnome-boxes"
   - "gnome-contacts"
   - "gnome-maps"
+  - "gnome-remote-desktop"
   - "gnome-tour"
   - "gnome-weather"
-  - "rhythmbox"
-  - "snapshot"
-  - "simple-scan"
-  - "totem"
+  - "malcontent-control" # parental control app
+  - "snapshot" # camera app
 
 packages:
   - "ansible"
