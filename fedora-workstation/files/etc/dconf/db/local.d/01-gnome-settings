@@ -1,6 +1,9 @@
 # documentation website for GNOME is abandoned, but this is maintained:
 # https://gitlab.gnome.org/GNOME/gnome-user-docs/-/tree/master?ref_type=heads
 
+# To discover what gsetting a GUI is modifying, open a terminal and run: "dconf watch /"
+#   then make changes in the GUI
+
 # Nautilus on Fedora 42 (with GNOME 48) uses this legacy gtk setting
 [org/gtk/settings/file-chooser]
 sort-directories-first=true
@@ -22,9 +25,19 @@ icon-theme='Papirus'
 gtk-theme='HighContrastInverse'
 monospace-font-name='DejaVu Sans Mono 11'
 
-# When to lock the screen
+# GUI correlations:
+# idle-delay = Power --> Power Saving --> Automatic Screen Blank
+# note: this one setting controls both GUI settings; setting it to 0 makes the GUI toggle turn off
 [org/gnome/desktop/session]
 idle-delay=uint32 1800
+
+# GUI correlations:
+#   NOTE: GUI does not show this in GNOME 49, see Known Issues in CHANGELOG
+# sleep-inactive-ac-type = Power --> Power Saving --> Automatic Suspend toggle ('suspend' = on, 'nothing' = off)
+# sleep-inactive-ac-timeout = Power --> Power Saving --> Automatic Suspend --> Delay
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-type='suspend'
+sleep-inactive-ac-timeout=10800
 
 [org/gnome/desktop/wm/preferences]
 button-layout='close,minimize,maximize:appmenu'
@@ -37,11 +50,6 @@ thumbnail-limit='100'
 
 [org/gnome/shell]
 favorite-apps=['org.mozilla.firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.keepassxc.KeePassXC.desktop', 'virt-manager.desktop', 'code.desktop', 'org.gnome.Calculator.desktop']
-
-# when to go to sleep when on charger; BROKEN (was this a ppd thing?)
-[org/gnome/settings-daemon/plugins/power]
-sleep-inactive-ac-timeout=3600
-sleep-inactive-ac-type='nothing'
 
 # Terminator keybinding shortcut
 [org/gnome/settings-daemon/plugins/media-keys]
