@@ -4,7 +4,6 @@
     "telemetry.telemetryLevel": "error",
     "update.mode": "none",
     "window.titleBarStyle": "native",
-    "workbench.editor.tabActionLocation": "left",
     "workbench.enableExperiments": false,
     "workbench.preferredHighContrastColorTheme": "Default Dark Modern",
     "workbench.startupEditor": "none"

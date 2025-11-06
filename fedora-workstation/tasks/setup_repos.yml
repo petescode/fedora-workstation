@@ -1,4 +1,12 @@
 ---
+- name: enhance dnf speeds
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    insertafter: '^\[main\]$'
+    line: 'max_parallel_downloads=10'
+    state: present
+    firstmatch: True
+
 - name: import repo gpg and signing keys
   ansible.builtin.rpm_key:
     key: "{{ item.location }}"
@@ -12,6 +20,11 @@
     state: present
   with_items:
     - "{{ repos }}"
+
+- name: enable appstream data from RPM Fusion repos
+  ansible.builtin.dnf:
+    name: '@Core'
+    state: latest
 
 - name: copy Microsoft Visual Studio Code repo file
   ansible.builtin.copy:

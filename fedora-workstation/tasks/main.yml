@@ -1,4 +1,7 @@
 ---
+- name: EXECUTE POWER SETTINGS TASKS
+  include_tasks: power_settings.yml
+
 - name: EXECUTE REPO SETUP TASKS
   include_tasks: setup_repos.yml
 

@@ -1,14 +1,16 @@
 ---
 unwanted_packages:
+  - "decibels" # audio player app
   - "gnome-boxes"
   - "gnome-contacts"
+  - "gnome-connections" # the connections app is a remote desktop app
   - "gnome-maps"
+  - "gnome-remote-desktop" # another remote desktop app
   - "gnome-tour"
   - "gnome-weather"
-  - "rhythmbox"
-  - "snapshot"
-  - "simple-scan"
-  - "totem"
+  - "malcontent-control" # parental control app
+  - "showtime" # video player app
+  - "snapshot" # camera app
 
 packages:
   - "ansible"
@@ -17,8 +19,6 @@ packages:
   - "dconf-editor"
   - "discord"
   - "dnf-utils"
-  - "fuse-exfat"
-  - "gnome-screenshot"
   - "gnome-tweaks"
   - "golang"
   - "google-chrome-stable"
@@ -28,15 +28,12 @@ packages:
   #- "nautilus-python"
   - "nmap"
   - "nss-tools"
-  - "openssl" # already installed F42
-  - "openvpn" # already installed F42
   - "papirus-icon-theme"
   - "perl-Image-ExifTool"
   - "pinta"
   - "python-vlc"
   - "p7zip"
   - "remmina"
-  - "smartmontools" # already installed F42
   #- "sqlite"
   - "terminator"
   - "vim"
@@ -44,7 +41,17 @@ packages:
   - "wireshark"
   - "wodim"
   - "yt-dlp"
-  - "*-firmware" # review this for F43
+
+firmware_packages:
+  - "alsa-firmware" # for use by ALSA sound drivers
+  - "b43-firmware" # broadcom wireless
+  - "broadcom-bt-firmware" # broadcom bluetooth
+  - "gnome-firmware" # UI frontend for fwupd
+  #- "ipu6-camera-bins" # for some Intel processors to interact with integrated webcams
+  - "midisport-firmware" # for midi sound equipment
+  - "nouveau-firmware" # nVidia GPUs
+  - "python3-virt-firmware" # for interacting with virtual filesystems
+  - "zd1211-firmware" # some USB wireless devices
 
 user_account: "{{ ansible_env.USERNAME }}"
 ...

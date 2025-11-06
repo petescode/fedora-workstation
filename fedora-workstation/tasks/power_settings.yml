@@ -1,0 +1,17 @@
+---
+- name: Set tuned power profile to performance
+  ansible.builtin.command: tuned-adm profile throughput-performance
+  when: ansible_form_factor == 'Desktop' or ansible_form_factor == 'Notebook'
+
+- name: If a VM, set the tuned power profile for virtual guests
+  ansible.builtin.command: tuned-adm profile virtual-guest
+  when: ansible_virtualization_role == 'guest'
+
+# if laptop, set different power modes for charging vs disconnected
+# see udev fixes - is this old?
+
+# if laptop, lid close action settings
+
+
+# Settings --> Power --> Power Saving settings
+...

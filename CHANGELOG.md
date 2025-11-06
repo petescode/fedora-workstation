@@ -1,4 +1,73 @@
-# Fedora 42 changes
+# Fedora 43 changes
+- Added dnf.conf parallel download setting to increase performance 
+
+- Added the enablement of RPM Fusion appstream data
+  - This is the equivalent of running the "sudo dnf group upgrade core" step from the docs 
+
+- Removed some packages that were either already installed by default now or obsolete
+  - This included the fuse-exfat package which was used in the past for interacting with exFAT filesystems, but that capability was apparently merged in kernel v5.4
+
+- Changed how firmware packages are installed
+  - Removed the wildcard "*-firmware" package which retrieved dozens of random packages
+  - After researching all packages pulled by that wildcard, I added only ones I felt were relevant for most common devices
+  - Created a separate variable for these firmware packages so that it is more obvious if they cause a failure in the overall run
+
+- Power settings
+  - Fixed lock screen / idle timeout setting (syntax error)
+  - Set power profiles based on the type of installation (VM, laptop, desktop)
+    - This is now managed via the tuned daemon starting with Fedora 42
+    - Ansible does not have a module for tuned at this time, must use the tuned-adm command
+    - The current power profile is set in this file: /etc/tuned/active_profile
+  - See "known issues" section for more information about certain settings and the GUI
+
+- Removed fractional scaling as an experimental GNOME setting because GNOME 49 flipped it to production (non-experimental) and enabled by default
+
+- Screenshotting has changed significantly
+  - The deprecated gnome-screenshot standalone-rpm tool has finally broken in GNOME 49 and since it is unmaintained it will not be fixed
+  - The native screenshot tool is lacking features, namely a timer option, and also cannot be pinned to the dock because it is part of the shell (like the power options menu for example)
+  - At this time, I have found no good substitute because pretty much all screenshot tools do not work well with Wayland - this has something to do with security features implemented by Wayland
+  - So the only way to do screenshots currently is to use the PrtScn button on your keyboard, which is using the new built-in screenshot tool
+
+
+## Known issues
+- A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
+  - This is used for some integrated webcams in laptops that use Intel Tiger Lake, Alder Lake, Raptor Lake and Meteor Lake
+  - Since this was tested the day of F43 release, it's likely the package will be fixed in the future
+
+- Not all power settings are reflected in the GUI
+  - The "Automatic Suspend" settings that used to show up under Power --> Power Saving are gone, I believe this is a bug
+  - This means if you want to disable sleep while on AC power, you'll need to modify "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type" to the value of "nothing"
+  - Suspect some combination of the ppd --> tuned migration (Fedora 42) and the forcing of Wayland-only (Fedora 43) caused this (this was not an issue in Fedora 42)
+  - Back in Fedora 42 the GUI options only went up to "2 hours", so to test for fix in the future, may need to modify "sleep-inactive-ac-timeout" to a value in seconds at or below that
+
+- If a VM, something is resetting the Power Profile from "virtual-guest" back to "balanced" upon reboot
+
+- Apps that currently utilize deprecated GTK3 and therefore have color/drawing issues with themes
+  - Virtual Machine Manager
+  - Fedora Media Writer
+
+## Future enhancements
+- Review browser settings
+
+- Review mimeapps defaults
+
+- Laptop conditionals
+  - nouveau-firmware conditional
+  - displaylink conditional
+  - laptop lid close actions
+  - laptop power vs battery profile switching
+
+- Clean out old irrelevant branches (after documenting RHEL forking)
+
+- Start using github issues against the project to track features and bugs instead of in here
+
+- Review Discord default settings
+
+- Replace "HighContrastInverse" for legacy apps with 3rd party GTK theme
+
+#
+# Previous versions
+## Fedora 42 changes
 - Disabled logind settings
     - Lost track of reason why, review in future release
 
@@ -24,13 +93,13 @@
     - Added Discord to install list
 
 
-## Known issues
+### Known issues
 - The "*-firmware" package installation is actually installing quite a bit of stuff we probably don't need at all, potentially causing slower run times and bloat
 
 - There are multiple power related settings currently not working, due to the migration to the tuned daemon. Target potentially updating these for F43
 
 
-## Future enhancements
+### Future enhancements
 Note: items listed here are either planned future changes or ideas to experiment with in the next Fedora release
 
 - Install a 3rd party legacy GTK theme in order to get more options
@@ -51,10 +120,8 @@ Note: items listed here are either planned future changes or ideas to experiment
 - Consider leaving VSCode tab X button to right with window buttons to left
 
 - Track RHEL-branching in CHANGELOG and retroactively mark which versions of Fedora RHEL has been forked from
+
 #
-# Previous versions
-
-
 ## Fedora 41 changes
 - Few changes to this project for Fedora 41 other than compatibility tweaks
 
