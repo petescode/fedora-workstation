@@ -42,7 +42,28 @@
 
 - If a VM, something is resetting the Power Profile from "virtual-guest" back to "balanced" upon reboot
 
+- Apps that currently utilize deprecated GTK3 and therefore have color/drawing issues with themes
+  - Virtual Machine Manager
+  - Fedora Media Writer
+
 ## Future enhancements
+- Review browser settings
+
+- Review mimeapps defaults
+
+- Laptop conditionals
+  - nouveau-firmware conditional
+  - displaylink conditional
+  - laptop lid close actions
+  - laptop power vs battery profile switching
+
+- Clean out old irrelevant branches (after documenting RHEL forking)
+
+- Start using github issues against the project to track features and bugs instead of in here
+
+- Review Discord default settings
+
+- Replace "HighContrastInverse" for legacy apps with 3rd party GTK theme
 
 #
 # Previous versions
