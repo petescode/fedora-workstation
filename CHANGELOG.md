@@ -45,6 +45,7 @@
 - Apps that currently utilize deprecated GTK3 and therefore have color/drawing issues with themes
   - Virtual Machine Manager
   - Fedora Media Writer
+  - Terminator
 
 ## Future enhancements
 - Review browser settings
@@ -54,7 +55,6 @@
 - Laptop conditionals
   - nouveau-firmware conditional
   - displaylink conditional
-  - laptop lid close actions
   - laptop power vs battery profile switching
 
 - Clean out old irrelevant branches (after documenting RHEL forking)

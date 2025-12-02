@@ -11,7 +11,18 @@
 # see udev fixes - is this old?
 
 # if laptop, lid close action settings
+# Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
+- name: create logind.conf.d directory
+  ansible.builtin.file:
+   path: /etc/systemd/logind.conf.d
+   state: directory
+  when: ansible_form_factor == 'Notebook'
 
+- name: copy logind settings override file
+  ansible.builtin.copy:
+   src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
+   dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
+  when: ansible_form_factor == 'Notebook'
 
 # Settings --> Power --> Power Saving settings
 ...
