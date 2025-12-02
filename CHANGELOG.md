@@ -12,13 +12,16 @@
   - After researching all packages pulled by that wildcard, I added only ones I felt were relevant for most common devices
   - Created a separate variable for these firmware packages so that it is more obvious if they cause a failure in the overall run
 
+- Fixed Flathub repo setup
+
 - Power settings
+  - See "known issues" section for more information about certain settings and the GUI
   - Fixed lock screen / idle timeout setting (syntax error)
   - Set power profiles based on the type of installation (VM, laptop, desktop)
     - This is now managed via the tuned daemon starting with Fedora 42
     - Ansible does not have a module for tuned at this time, must use the tuned-adm command
     - The current power profile is set in this file: /etc/tuned/active_profile
-  - See "known issues" section for more information about certain settings and the GUI
+  - Fixed laptop lid close power settings
 
 - Removed fractional scaling as an experimental GNOME setting because GNOME 49 flipped it to production (non-experimental) and enabled by default
 

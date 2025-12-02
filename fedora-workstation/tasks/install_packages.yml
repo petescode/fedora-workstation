@@ -32,4 +32,7 @@
 - name: install virtualization package group
   ansible.builtin.command:
     cmd: dnf group install --with-optional virtualization -y
+
+# install flatpak packages here
+# flatpak install flathub com.github.PintaProject.Pinta
 ...
