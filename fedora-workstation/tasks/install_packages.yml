@@ -33,6 +33,10 @@
   ansible.builtin.command:
     cmd: dnf group install --with-optional virtualization -y
 
-# install flatpak packages here
-# flatpak install flathub com.github.PintaProject.Pinta
+- name: install flatpak packages
+  community.general.flatpak:
+    name: "{{ flatpak_packages }}"
+    remote: flathub
+    state: present
+    method: system
 ...

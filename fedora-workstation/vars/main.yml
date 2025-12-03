@@ -30,7 +30,6 @@ packages:
   - "nss-tools"
   - "papirus-icon-theme"
   - "perl-Image-ExifTool"
-  - "pinta"
   - "python-vlc"
   - "p7zip"
   - "remmina"
@@ -52,6 +51,9 @@ firmware_packages:
   - "nouveau-firmware" # nVidia GPUs
   - "python3-virt-firmware" # for interacting with virtual filesystems
   - "zd1211-firmware" # some USB wireless devices
+
+flatpak_packages:
+  - "com.github.PintaProject.Pinta"
 
 user_account: "{{ ansible_env.USERNAME }}"
 ...

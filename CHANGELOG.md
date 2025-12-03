@@ -14,6 +14,10 @@
 
 - Fixed Flathub repo setup
 
+- Moved Pinta to flatpak from rpm
+  - rpm package severely out of date which is now causing UI issues due to lack of scaling support; developers only maintaining flatpak / snaps
+  - https://github.com/PintaProject/Pinta/tree/master
+
 - Power settings
   - See "known issues" section for more information about certain settings and the GUI
   - Fixed lock screen / idle timeout setting (syntax error)
