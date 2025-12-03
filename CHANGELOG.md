@@ -14,6 +14,9 @@
 
 - Fixed Flathub repo setup
 
+- Created a flatpak package variable and looped installer task
+  - Note: flatpaks take much longer to install than rpm's as they do not support parallel downloads and have to package all dependencies with the flatpak; hence expect ansible role runtime to get slower the more you add
+
 - Moved Pinta to flatpak from rpm
   - rpm package severely out of date which is now causing UI issues due to lack of scaling support; developers only maintaining flatpak / snaps
   - https://github.com/PintaProject/Pinta/tree/master
@@ -56,8 +59,7 @@
 
 ## Future enhancements
 - Review browser settings
-
-- Review mimeapps defaults
+  - FF is not showing bookmarks bar by default
 
 - Laptop conditionals
   - nouveau-firmware conditional
@@ -71,6 +73,7 @@
 - Review Discord default settings
 
 - Replace "HighContrastInverse" for legacy apps with 3rd party GTK theme
+  - Only if native Adwaita darkmode is available - other themes change everything such as icons, button positions, etc
 
 #
 # Previous versions
