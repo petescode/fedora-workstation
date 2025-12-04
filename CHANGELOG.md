@@ -38,6 +38,7 @@
   - At this time, I have found no good substitute because pretty much all screenshot tools do not work well with Wayland - this has something to do with security features implemented by Wayland
   - So the only way to do screenshots currently is to use the PrtScn button on your keyboard, which is using the new built-in screenshot tool
 
+- Installed legacy Adwaita GTK themes for better dark mode options (Adwaita-dark vs HighContrastInverse) on GTK3- apps
 
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
@@ -52,10 +53,13 @@
 
 - If a VM, something is resetting the Power Profile from "virtual-guest" back to "balanced" upon reboot
 
-- Apps that currently utilize deprecated GTK3 and therefore have color/drawing issues with themes
-  - Virtual Machine Manager
-  - Fedora Media Writer
-  - Terminator
+- Apps that currently utilize deprecated GTK3 or older and therefore have color/drawing issues with themes
+    - Virtual Machine Manager
+    - Fedora Media Writer
+    - Terminator
+    - VLC
+    - Wireshark
+  - Of these, Wireshark and Fedora Media Writer also are not rendering their close,min,max buttons correctly while others are (GTK2 vs GTK3 issue?)
 
 ## Future enhancements
 - Review browser settings
@@ -71,9 +75,6 @@
 - Start using github issues against the project to track features and bugs instead of in here
 
 - Review Discord default settings
-
-- Replace "HighContrastInverse" for legacy apps with 3rd party GTK theme
-  - Only if native Adwaita darkmode is available - other themes change everything such as icons, button positions, etc
 
 #
 # Previous versions

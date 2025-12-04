@@ -19,6 +19,7 @@ packages:
   - "dconf-editor"
   - "discord"
   - "dnf-utils"
+  - "gnome-themes-extra"
   - "gnome-tweaks"
   - "golang"
   - "google-chrome-stable"

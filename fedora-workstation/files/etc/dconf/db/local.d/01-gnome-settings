@@ -21,8 +21,8 @@ document-font-name='DejaVu Sans 11'
 font-name='DejaVu Sans 11'
 icon-theme='Papirus'
 # gtk-theme affects legacy applications still using gtk and not gtk4
-#  these include terminator, Virtual Machine Manager, and others
-gtk-theme='HighContrastInverse'
+#gtk-theme='HighContrastInverse'
+gtk-theme='Adwaita-dark'
 monospace-font-name='DejaVu Sans Mono 11'
 
 # GUI correlations:
