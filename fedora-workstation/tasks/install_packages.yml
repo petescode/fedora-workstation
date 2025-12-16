@@ -32,4 +32,11 @@
 - name: install virtualization package group
   ansible.builtin.command:
     cmd: dnf group install --with-optional virtualization -y
+
+- name: install flatpak packages
+  community.general.flatpak:
+    name: "{{ flatpak_packages }}"
+    remote: flathub
+    state: present
+    method: system
 ...

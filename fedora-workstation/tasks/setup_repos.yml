@@ -39,10 +39,12 @@
     value: 1
     backup: True
 
+# method must be system, not user, and yes you can still use without sudo doing this
 - name: add flathub repo to user space
   community.general.flatpak_remote:
     name: flathub
     state: present
+    enabled: True
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
+    method: system
 ...

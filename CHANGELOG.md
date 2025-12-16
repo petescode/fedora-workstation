@@ -12,13 +12,23 @@
   - After researching all packages pulled by that wildcard, I added only ones I felt were relevant for most common devices
   - Created a separate variable for these firmware packages so that it is more obvious if they cause a failure in the overall run
 
+- Fixed Flathub repo setup
+
+- Created a flatpak package variable and looped installer task
+  - Note: flatpaks take much longer to install than rpm's as they do not support parallel downloads and have to package all dependencies with the flatpak; hence expect ansible role runtime to get slower the more you add
+
+- Moved Pinta to flatpak from rpm
+  - rpm package severely out of date which is now causing UI issues due to lack of scaling support; developers only maintaining flatpak / snaps
+  - https://github.com/PintaProject/Pinta/tree/master
+
 - Power settings
+  - See "known issues" section for more information about certain settings and the GUI
   - Fixed lock screen / idle timeout setting (syntax error)
   - Set power profiles based on the type of installation (VM, laptop, desktop)
     - This is now managed via the tuned daemon starting with Fedora 42
     - Ansible does not have a module for tuned at this time, must use the tuned-adm command
     - The current power profile is set in this file: /etc/tuned/active_profile
-  - See "known issues" section for more information about certain settings and the GUI
+  - Fixed laptop lid close power settings
 
 - Removed fractional scaling as an experimental GNOME setting because GNOME 49 flipped it to production (non-experimental) and enabled by default
 
@@ -28,6 +38,7 @@
   - At this time, I have found no good substitute because pretty much all screenshot tools do not work well with Wayland - this has something to do with security features implemented by Wayland
   - So the only way to do screenshots currently is to use the PrtScn button on your keyboard, which is using the new built-in screenshot tool
 
+- Installed legacy Adwaita GTK themes for better dark mode options (Adwaita-dark vs HighContrastInverse) on GTK3- apps
 
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
@@ -42,19 +53,21 @@
 
 - If a VM, something is resetting the Power Profile from "virtual-guest" back to "balanced" upon reboot
 
-- Apps that currently utilize deprecated GTK3 and therefore have color/drawing issues with themes
-  - Virtual Machine Manager
-  - Fedora Media Writer
+- Apps that currently utilize deprecated GTK3 or older and therefore have color/drawing issues with themes
+    - Virtual Machine Manager
+    - Fedora Media Writer
+    - Terminator
+    - VLC
+    - Wireshark
+  - Of these, Wireshark and Fedora Media Writer also are not rendering their close,min,max buttons correctly while others are (GTK2 vs GTK3 issue?)
 
 ## Future enhancements
 - Review browser settings
-
-- Review mimeapps defaults
+  - FF is not showing bookmarks bar by default
 
 - Laptop conditionals
   - nouveau-firmware conditional
   - displaylink conditional
-  - laptop lid close actions
   - laptop power vs battery profile switching
 
 - Clean out old irrelevant branches (after documenting RHEL forking)
@@ -62,8 +75,6 @@
 - Start using github issues against the project to track features and bugs instead of in here
 
 - Review Discord default settings
-
-- Replace "HighContrastInverse" for legacy apps with 3rd party GTK theme
 
 #
 # Previous versions

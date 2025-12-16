@@ -2,7 +2,6 @@
 # The transition to GNOME 45 in Fedora 39 broke theme settings (usually found in Tweaks). More here: https://release.gnome.org/45/developers/  
 # Legacy applications and applications that use the latest versions of GTK4 now have different settings in the gnome file
 
-
 # To kill Nautilus, Ansible does not have a kill module, so had to run this one in a non-idempotent way. Hence we must ignore_errors here
 - name: kill nautilus process
   ansible.builtin.command:
@@ -22,22 +21,6 @@
     dest: /home/{{ user_account }}/.config/mimeapps.list
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
-
-# Reference for logind settings: https://www.freedesktop.org/software/systemd/man/logind.conf.html
-#- name: create logind.conf.d directory
-#  ansible.builtin.file:
-#    path: /etc/systemd/logind.conf.d
-#    state: directory
-
-#- name: copy logind settings override file
-#  ansible.builtin.copy:
-#    src: ./etc/systemd/logind.conf.d/00-lidsettings.conf
-#    dest: /etc/systemd/logind.conf.d/00-lidsettings.conf
-
-# potential future placeholder here for tuned-adm command / pdd.conf but currently bugged (see NEWS.md)
-# see commands:
-# - tuned-adm profile --help
-# - tuned-adm verify
 
 # A dconf update is necessary to load the new dconf settings. Even rebooting the system will not do this
 - name: update dconf databases
