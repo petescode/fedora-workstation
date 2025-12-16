@@ -40,6 +40,8 @@
 
 - Installed legacy Adwaita GTK themes for better dark mode options (Adwaita-dark vs HighContrastInverse) on GTK3- apps
 
+- Set default Discord settings to prevent it from running in the background when not being used
+
 ## Known issues
 - A firmware package called "ipu6-camera-bins" was causing install failures on AMD desktop
   - This is used for some integrated webcams in laptops that use Intel Tiger Lake, Alder Lake, Raptor Lake and Meteor Lake
@@ -73,8 +75,6 @@
 - Clean out old irrelevant branches (after documenting RHEL forking)
 
 - Start using github issues against the project to track features and bugs instead of in here
-
-- Review Discord default settings
 
 #
 # Previous versions
